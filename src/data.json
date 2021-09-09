@@ -1,0 +1,20 @@
+{
+  "PARTS_LIST_DATA" : [
+    {
+      "id": 1,
+      "name": "Super Deck",
+      "image_url": "https://source.unsplash.com/random/100x100",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "59.99",
+      "category": "Deck"
+    },
+    {
+      "id": 2,
+      "name": "Green Deck",
+      "image_url": "https://source.unsplash.com/random/100x100",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "49.99",
+      "category": "Deck"
+    }
+  ]
+}
