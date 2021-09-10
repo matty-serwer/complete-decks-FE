@@ -3,7 +3,7 @@ import { Col, Card, Button } from 'react-bootstrap';
 import CartContext from './../context/Context';
 import { IItem } from './../context/types';
 
-export interface IItemComponentProps {
+interface IItemComponentProps {
   item: IItem;
 }
 

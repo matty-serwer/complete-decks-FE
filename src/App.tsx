@@ -26,7 +26,7 @@ const App: React.FC<IApplicationProps> = props => {
     cartDispatch
   }
 
-  console.log(cartState);
+  // console.log(cartState);
   
   return (
     <CartContextProvider value={cartContextValues}>
