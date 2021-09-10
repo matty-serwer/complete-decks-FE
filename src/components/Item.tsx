@@ -20,7 +20,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
           <Card.Text>
             {item.description}
           </Card.Text>
-          <Button variant="primary">Add This Part</Button>
+          <Button variant="primary" onClick={() => cartContext.cartDispatch({ type: 'add_item', payload: item})}>Add This Part</Button>
         </Card.Body>
       </Card>
     </Col >

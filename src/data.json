@@ -2,19 +2,116 @@
   "PARTS_LIST_DATA" : [
     {
       "id": 1,
-      "name": "Super Deck",
-      "image_url": "https://source.unsplash.com/random/100x100",
+      "name": "Anti-Hero Anderson Recycling Deck",
+      "image_url": "https://i.ibb.co/JyC2tNb/anti-hero-anderson-recycling-deck.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
       "price": "59.99",
-      "category": "Deck"
+      "category": "decks"
     },
     {
       "id": 2,
-      "name": "Green Deck",
-      "image_url": "https://source.unsplash.com/random/100x100",
+      "name": "Blind Danny Way Nuke Baby Deck",
+      "image_url": "https://i.ibb.co/FB9jx7V/blind-danny-way-nuke-baby-deck.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
       "price": "49.99",
-      "category": "Deck"
+      "category": "decks"
+    },
+    {
+      "id": 3,
+      "name": "Blind OG Ripped Deck",
+      "image_url": "https://i.ibb.co/Q90kY0b/blind-og-ripped-deck.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "55.99",
+      "category": "decks"
+    },
+    {
+      "id": 4,
+      "name": "Creature Provost Pro Deck",
+      "image_url": "https://i.ibb.co/bNG0fk3/creature-provost-pro-deck.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "44.99",
+      "category": "decks"
+    },
+    {
+      "id": 5,
+      "name": "Girl Sans Wheels",
+      "image_url": "https://i.ibb.co/S52D0Vg/girl-sans-wheels.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "wheels"
+    },
+    {
+      "id": 6,
+      "name": "Slime Balls Brain Speed Balls 99a Wheels",
+      "image_url": "https://i.ibb.co/4t9R6Kc/slime-balls-brain-speed-balls-99a.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "wheels"
+    },
+    {
+      "id": 7,
+      "name": "Slime Balls Vomit Mini II 97a Wheels",
+      "image_url": "https://i.ibb.co/MSv43yk/slime-balls-vomit-mini-ii-97a-wheels.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "wheels"
+    },
+    {
+      "id": 8,
+      "name": "Spitfire Formula 4 Miles 101a",
+      "image_url": "https://i.ibb.co/dWdx6PF/spitfire-formula-4-miles-101a.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "wheels"
+    },
+    {
+      "id": 9,
+      "name": "Girl Repeater Conical Wheels",
+      "image_url": "https://i.ibb.co/7QCTZd0/girl-repeater-conical-wheels.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "wheels"
+    },
+    {
+      "id": 10,
+      "name": "Ruckus Low Trucks",
+      "image_url": "https://i.ibb.co/Pr2vvd2/ruckus-low-trucks.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "trucks"
+    },
+    {
+      "id": 11,
+      "name": "Element Raw Trucks",
+      "image_url": "https://i.ibb.co/dBNRgMP/element-raw-trucks.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "trucks"
+    },
+    {
+      "id": 12,
+      "name": "Independent S11 Trucks",
+      "image_url": "https://i.ibb.co/6DMnq0G/independent-s-11-trucks.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "trucks"
+    },
+    {
+      "id": 13,
+      "name": "Independent Stage 11 Titanium Trucks",
+      "image_url": "https://i.ibb.co/FK5L8Rv/independent-stage-11-titanium.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "price": "20.99",
+      "category": "trucks"
     }
   ]
 }
+
+
+
+
+
+
+
+
+

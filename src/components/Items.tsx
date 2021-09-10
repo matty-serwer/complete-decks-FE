@@ -22,7 +22,7 @@ function Items() {
         <h2>Items Page</h2>
         <h3>{category}</h3>
         <Row>
-          {itemsList.map((item) => <ItemComponent key={item.id} item={item} />
+          {itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.id} item={_item} />)
           )}
         </Row>
       </Container>
