@@ -11,6 +11,8 @@ import { CartContextProvider, cartReducer, initialCartState } from './context/Co
 import Start from './components/Start'
 import Categories from './components/Categories';
 import Items from './components/Items';
+import Cart from './components/Cart';
+import NavbarComponent from './components/Navbar';
 
 // data
 import productList from './data.json';
@@ -32,11 +34,11 @@ const App: React.FC<IApplicationProps> = props => {
     <CartContextProvider value={cartContextValues}>
       <BrowserRouter>
         <div className='App'>
-          <h1>App.js</h1>
+          <NavbarComponent />
           <Route exact path='/' component={Start} />
           <Route path='/categories' component={Categories} />
           <Route path='/items' component={Items} />
-          <Route path='/cart' />
+          <Route path='/cart' component={Cart} />
         </div>
       </BrowserRouter>
     </CartContextProvider>

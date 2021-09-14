@@ -6,11 +6,11 @@ import ItemComponent from './Item';
 
 import itemsData from '../data.json';
 
-export interface IShopPageProps { }
+interface IItemsProps { }
 
 const itemsList: IItem[] = itemsData.PARTS_LIST_DATA;
 
-function Items() {
+const Items: React.FC<IItemsProps> = (props) => {
 
   let query = useQuery();
   const category = query.get("category");
