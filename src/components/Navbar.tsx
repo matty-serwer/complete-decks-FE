@@ -16,6 +16,7 @@ const NavbarComponent: React.FC = props => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
             <Nav.Link as={Link} to="/cart">Shopping Cart</Nav.Link>
+            <Nav.Link as={Link} to="/register">Sign Up!</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

@@ -13,6 +13,7 @@ import Categories from './components/Categories';
 import Items from './components/Items';
 import Cart from './components/Cart';
 import NavbarComponent from './components/Navbar';
+import RegisterForm from './forms/Register';
 
 // data
 import productList from './data.json';
@@ -39,6 +40,7 @@ const App: React.FC<IApplicationProps> = props => {
           <Route path='/categories' component={Categories} />
           <Route path='/items' component={Items} />
           <Route path='/cart' component={Cart} />
+          <Route path='/register' component={RegisterForm} />
         </div>
       </BrowserRouter>
     </CartContextProvider>

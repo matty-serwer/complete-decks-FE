@@ -8,27 +8,17 @@ export interface ICartProps { }
 
 const Cart: React.FC<ICartProps> = props => {
   const cartContext = useContext(CartContext);
+  const cartItems = cartContext.cartState.cartItems;
 
   return (
     <>
       <Container>
-        {Object.keys(cartContext.cartState.items).length > 0 ?
+        {cartItems.length > 0 ?
           <Row>
-            {Object.keys(cartContext.cartState.items).map((value, index) => {
-              let _items = cartContext.cartState.items[value];
+            {cartItems.map(_item => <CartItem key={_item.id} item={_item} quantity={1} />)}
+          </Row> :
+          <h3>No parts selected yet...</h3>}
 
-              if (_items.length > 0) {
-                return (
-                  <CartItem key={index} item={_items[0]} quantity={_items.length} />
-                )
-              }
-              else { return null }
-            })}
-          </Row>
-          :
-          <h3>Your cart is empty...</h3>
-
-        }
       </Container>
     </>
   )

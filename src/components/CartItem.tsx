@@ -25,7 +25,7 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
                         <Button
                             size="sm"
                             color="primary"
-                            onClick={() => cartContext.cartDispatch({ type: 'remove_item', payload: item })}
+                            onClick={() => cartContext.cartDispatch({ type: 'REMOVE_CART_ITEM', payload: item })}
                         >
                             Remove one from cart
                             <i className="fa fa-minus ml-1" aria-hidden="true"></i>
