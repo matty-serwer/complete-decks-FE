@@ -35,7 +35,7 @@ const App: React.FC<IApplicationProps> = props => {
     <CartContextProvider value={cartContextValues}>
       <BrowserRouter>
         <div className='App'>
-          <NavbarComponent />
+          {/* <NavbarComponent /> */}
           <Route exact path='/' component={Start} />
           <Route path='/categories' component={Categories} />
           <Route path='/items' component={Items} />

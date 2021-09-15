@@ -1,0 +1,53 @@
+.cat-header {
+  background-image: url(../images/upside-down.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  box-shadow:inset 0 0 0 2000px rgba(36, 48, 114, 0.6);
+}
+
+.cat-title {
+  color: white;
+  font-size: 60px;
+  padding-top: 10vh;
+  padding-bottom: 5vh;
+}
+
+.body-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.button-container{
+  width: 1000px;
+  padding-top: 5vh;
+}
+
+.d-button {
+  font-size: 80px;
+  border-width: 5px;
+  border-radius: 20px;
+  padding-top: 18.5vh;
+  padding-bottom: 18.5vh;
+  margin-right: 20px;
+}
+
+.tw-button {
+  font-size: 80px;
+  border-width: 5px;
+  border-radius: 20px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  width: 400px;
+}
+
+.wheels {
+  margin-top: 4.4vh;
+}
+
+
+.tw-col {
+  display: flex;
+  flex-direction: column;
+}

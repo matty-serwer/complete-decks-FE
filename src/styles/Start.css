@@ -1,0 +1,23 @@
+.start-hero-image {
+  background-image: url(../images/big-jump.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.title {
+  color: white;
+  font-size: 70px;
+  padding-top: 20vh;
+  padding-bottom: 15vh;
+}
+
+.start-button {
+  color: white;
+  font-size: 100px;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 20px;
+}

@@ -1,0 +1,31 @@
+.card {
+  margin: 1vh 0;
+}
+
+.card-title {
+  min-height: 50px;
+}
+
+.card-image {
+  height: 100%;
+  max-height: 35vh;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* color: white; */
+}
+
+.price {
+  font-size: 20px;
+  padding-top: 1px;
+}
+
+.add-button {
+  padding: 9px 12px;
+  margin-bottom: 15px;
+}

@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
+import '../styles/Start.css';
 
 function Start() {
   return (
-    <div>
-      <h2>Start Button Page</h2>
-      <Link to='/categories'>Categories</Link>
+    <div className='start-hero-image'>
+      <h1 className='title'>Complete Decks</h1>
+      <Button as={Link} to='/categories' variant='outline-primary' className='start-button'>START</Button>
     </div>
   )
 }

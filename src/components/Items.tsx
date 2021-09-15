@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Row, Breadcrumb } from 'react-bootstrap';
 import { PropagateLoader } from 'react-spinners';
 import { useQuery } from '../hooks'
 import { IItem } from '../context/types';
+// components
 import ItemComponent from './Item';
+import NavbarComponent from './Navbar';
+//styles
+import '../styles/Items.css';
 
 import itemsData from '../data.json';
 
@@ -16,12 +21,11 @@ const setItems = (itemsList: IItem[]): void => {
 
 const Items: React.FC<IItemsProps> = (props) => {
   const [itemsList, setItemsList] = useState(new Array<IItem>());
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // setIsLoading(true)
-    setTimeout(() => setItemsList(itemsData.PARTS_LIST_DATA), 2000)
-    // setIsLoading(false)
+    // setTimeout(() => setItemsList(itemsData.PARTS_LIST_DATA), 2000)
+    setItemsList(itemsData.PARTS_LIST_DATA)
   }, []);
 
   let query = useQuery();
@@ -29,16 +33,22 @@ const Items: React.FC<IItemsProps> = (props) => {
 
   return (
     <>
+      <NavbarComponent colorShift="navbar-dark"/>
       <Container>
-
-        <h2>Items Page</h2>
-        <h3>{category}</h3>
+        <Breadcrumb>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=decks" }} active={category === "decks"}>Decks</Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=trucks" }} active={category === "trucks"}>
+            Trucks
+          </Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=wheels" }} active={category === "wheels"}>Wheels</Breadcrumb.Item>
+        </Breadcrumb>
+        <h3>{category!.toUpperCase()}</h3>
         <Row>
           {isLoading ?
-            <PropagateLoader size={20} color="#1cdbce"/>
-          :
-          itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.id} item={_item} />)
-          )}
+            <PropagateLoader size={20} color="#1cdbce" />
+            :
+            itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.id} item={_item} />)
+            )}
         </Row>
       </Container>
     </>

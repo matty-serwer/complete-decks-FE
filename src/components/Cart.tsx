@@ -13,7 +13,7 @@ const Cart: React.FC<ICartProps> = props => {
   return (
     <>
       <Container>
-        {cartItems.length > 0 ?
+        {cartItems.length ?
           <Row>
             {cartItems.map(_item => <CartItem key={_item.id} item={_item} quantity={1} />)}
           </Row> :
