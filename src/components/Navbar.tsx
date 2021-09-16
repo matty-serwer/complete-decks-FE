@@ -14,7 +14,7 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
   let colorShift = "none"
   if (props.colorShift) {
     colorShift = props.colorShift
-    console.log(colorShift)
+    // console.log(colorShift)
   }
 
   const cartContext = useContext(CartContext);
@@ -23,11 +23,13 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
     <>
       <Navbar variant="dark" sticky="top" className={colorShift}>
         <Container>
-          <Navbar.Brand as={Link} to="/">Complete Decks</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className="navbar-brand">Complete Decks</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
-            <Nav.Link as={Link} to="/cart">Shopping Cart</Nav.Link>
-            <Nav.Link as={Link} to="/register">Sign Up!</Nav.Link>
+            <Nav.Link className="navbar-link" as={Link} to="/categories">Categories</Nav.Link> 
+            <span className="nav-slash">/</span>
+            <Nav.Link className="navbar-link" as={Link} to="/cart">Shopping Cart</Nav.Link>
+            <span className="nav-slash">/</span>
+            <Nav.Link className="navbar-link" as={Link} to="/register">Sign Up!</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

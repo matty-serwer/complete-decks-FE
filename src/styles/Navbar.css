@@ -1,3 +1,8 @@
-.black-ink {
-  color: black;
+.navbar-link {
+  color: white!important;
+}
+
+.nav-slash {
+  color: white;
+  margin-top: 7.5px;
 }
