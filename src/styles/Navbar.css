@@ -1,8 +1,18 @@
+.navbar-brand:hover {
+  color: #5BFCA6 !important;
+}
+
 .navbar-link {
   color: white!important;
 }
 
+.navbar-link:hover {
+  color: #5BFCA6 !important;
+  /* text-decoration: underline; */
+}
+
 .nav-slash {
   color: white;
-  margin-top: 7.5px;
+  /* margin-top: 7.5px; */
+  font-size: 25px !important;
 }
