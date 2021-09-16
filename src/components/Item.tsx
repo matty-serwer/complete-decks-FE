@@ -12,6 +12,7 @@ interface IItemComponentProps {
 const ItemComponent: React.FC<IItemComponentProps> = (props) => {
   const { item } = props;
   const cartContext = useContext(CartContext);
+  const cartItems = cartContext.cartState.cartItems;
 
   return (
     <Col sm={12} md={6} lg={4} >
@@ -23,7 +24,17 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
             <Card.Text className="price">
               ${item.price}
             </Card.Text>
-            <Button className="add-button" variant="outline-primary" onClick={() => cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item })}>Add This Part</Button>
+            {cartItems.some((_item) => _item.id === item.id) ? (
+              <Button className="remove-button shop-button" variant="outline-warning"
+              onClick={() => {
+                cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
+              }}>
+                Remove Part
+              </Button>
+            ) : (
+              <Button className="add-button shop-button" variant="outline-primary" onClick={() => cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item })}>Add This Part</Button>
+            )}
+            
 
           </div>
         </Card.Body>

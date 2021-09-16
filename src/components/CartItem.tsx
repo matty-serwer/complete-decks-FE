@@ -26,7 +26,7 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
             <Card.Body>
               <Card.Title className="cart-item-title">{item.name}</Card.Title>
               <Card.Text className="cart-item-price">${item.price}</Card.Text>
-              <Button variant="outline-warning">Remove From Cart?</Button>
+              <Button variant="outline-warning" onClick={() => cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })}>Remove From Cart?</Button>
             </Card.Body>
           </Col>
         </Row>
