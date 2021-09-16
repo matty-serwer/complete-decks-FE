@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Container, Row } from 'react-bootstrap';
-
-import CartItem from './CartItem';
 import CartContext from '../context/Context';
+// components
+import NavbarComponent from './Navbar';
+import CartItem from './CartItem';
+
 
 export interface ICartProps { }
 
@@ -12,6 +14,7 @@ const Cart: React.FC<ICartProps> = props => {
 
   return (
     <>
+      <NavbarComponent />
       <Container>
         {cartItems.length ?
           <Row>

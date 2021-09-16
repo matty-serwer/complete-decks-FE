@@ -1,40 +1,38 @@
 import React, { useContext } from 'react';
-import { Col, Card, Button } from 'react-bootstrap';
-import CartContext from './../context/Context';
-import { IItem } from './../context/types';
+import { Row, Col, Card, Button } from 'react-bootstrap';
+import CartContext from '../context/Context';
+import { IItem } from '../context/types';
+// components
+import NavbarComponent from './Navbar';
+// styles
+import '../styles/CartItem.css';
 
 export interface ICartItemProps {
-    item: IItem;
-    quantity: number;
+  item: IItem;
 }
 
 const CartItem: React.FC<ICartItemProps> = (props) => {
-    const { item, quantity } = props;
-    const cartContext = useContext(CartContext);
+  const { item } = props;
+  const cartContext = useContext(CartContext)
 
-    return (
-        <Col sm={12} md={6} lg={4} xl={3}>
-            <Card className="shadow-sm mb-4">
-                <Card.Body>
-                    <strong>
-                        <h5>{item.name} x {quantity}</h5>
-                    </strong>
-                    <br />
-                    <div>
-                        <h4 className="text-warning">${parseInt(item.price) * quantity}</h4>
-                        <Button
-                            size="sm"
-                            color="primary"
-                            onClick={() => cartContext.cartDispatch({ type: 'REMOVE_CART_ITEM', payload: item })}
-                        >
-                            Remove one from cart
-                            <i className="fa fa-minus ml-1" aria-hidden="true"></i>
-                        </Button>
-                    </div>
-                </Card.Body>
-            </Card>
-        </Col>
-    );
-};
+  return (
+    <>
+      <Card>
+        <Row className="cart-card-row">
+          <Col md={4}>
+            <Card.Img src={item.image_url} className="cart-card-image" />
+          </Col>
+          <Col md={8}>
+            <Card.Body>
+              <Card.Title className="cart-item-title">{item.name}</Card.Title>
+              <Card.Text className="cart-item-price">${item.price}</Card.Text>
+              <Button variant="outline-warning">Remove From Cart?</Button>
+            </Card.Body>
+          </Col>
+        </Row>
+      </Card>
+    </>
+  )
+}
 
 export default CartItem;
