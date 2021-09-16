@@ -9,3 +9,6 @@
 #52E3BF - ocean green
 #52B7E3 - sky blue
 #4762E6 - midnight blue
+
+#303033 - black
+#fcfcfc - white

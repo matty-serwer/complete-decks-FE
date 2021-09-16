@@ -32,17 +32,18 @@ const Items: React.FC<IItemsProps> = (props) => {
   const category = query.get("category");
 
   return (
-    <>
-      <NavbarComponent colorShift="navbar-dark"/>
+    <div className="items">
+      <NavbarComponent colorShift="light" />
       <Container>
-        <Breadcrumb>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=decks" }} active={category === "decks"}>Decks</Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=trucks" }} active={category === "trucks"}>
-            Trucks
-          </Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=wheels" }} active={category === "wheels"}>Wheels</Breadcrumb.Item>
-        </Breadcrumb>
-        <h3>{category!.toUpperCase()}</h3>
+        <div className="breadcrumb-container">
+          <Breadcrumb className="cat-breadcrumb">
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=decks" }} active={category === "decks"}>Decks</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=trucks" }} active={category === "trucks"}>
+              Trucks
+            </Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=wheels" }} active={category === "wheels"}>Wheels</Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
         <Row>
           {isLoading ?
             <PropagateLoader size={20} color="#1cdbce" />
@@ -51,7 +52,7 @@ const Items: React.FC<IItemsProps> = (props) => {
             )}
         </Row>
       </Container>
-    </>
+    </div>
   )
 }
 

@@ -16,3 +16,22 @@
   /* margin-top: 7.5px; */
   font-size: 25px !important;
 }
+
+.navbar-brand-l {
+  color: #303033 !important;
+}
+
+.navbar-link-l {
+  color: #303033 !important;
+}
+
+.navbar-link-l:hover {
+  color: #5BFCA6 !important;
+  /* text-decoration: underline; */
+}
+
+.nav-slash-l {
+  color: #303033;
+  /* margin-top: 7.5px; */
+  font-size: 25px !important;
+}
