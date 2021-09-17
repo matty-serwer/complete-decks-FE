@@ -1,0 +1,32 @@
+.header {
+  margin: 3vh 0;
+}
+
+.header h1 {
+  color: #4762E6;
+}
+
+.header h3 {
+  color: #4762E6;
+  font-size: 25px;
+}
+
+.register {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.register p {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.button-container {
+  /* border: 1px solid blue; */
+  padding-top: 13px;
+}
+
+.reg-button {
+  margin: 0 7px;
+}

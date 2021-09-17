@@ -8,9 +8,14 @@
 
 .cart-item-title {
   font-size: 30px;
+  min-height: 65px;
 }
 
 .cart-item-price {
   font-size: 20px;
   margin: 15px 0px 33px;
+}
+
+.cart-card {
+  min-width: 100%
 }

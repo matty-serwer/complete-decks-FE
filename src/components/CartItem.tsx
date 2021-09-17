@@ -17,7 +17,7 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
 
   return (
     <>
-      <Card>
+      <Card className="cart-card">
         <Row className="cart-card-row">
           <Col md={4}>
             <Card.Img src={item.image_url} className="cart-card-image" />
