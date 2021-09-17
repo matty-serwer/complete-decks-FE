@@ -4,6 +4,8 @@ import CartContext from '../context/Context';
 // components
 import NavbarComponent from './Navbar';
 import CartItem from './CartItem';
+// styles
+import '../styles/Cart.css';
 
 
 export interface ICartProps { }
@@ -52,8 +54,10 @@ const Cart: React.FC<ICartProps> = props => {
         </Container>
         <div className="register">
           <p>Total: S{total}</p>
-          <Button variant="outline-primary">Checkout</Button>
-          <Button variant="outline-primary">Save Board</Button>
+          <div className="button-container">
+            <Button variant="outline-primary" className="reg-button">Checkout</Button>
+            <Button variant="outline-primary" className="reg-button">Save Board</Button>
+          </div>
         </div>
       </div>
     </>

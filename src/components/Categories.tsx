@@ -12,7 +12,7 @@ function useQuery() {
 function Start() {
 
   return (
-    <div>
+    <div className="categories">
       <div className="cat-header">
         <NavbarComponent />
         <h1 className="cat-title">Board Components</h1>
