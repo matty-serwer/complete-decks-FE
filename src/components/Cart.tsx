@@ -1,35 +1,61 @@
-import React, { useContext } from 'react';
-import { Container, Row } from 'react-bootstrap';
-
-import CartItem from './CartItem';
+import React, { useContext, useEffect, useState } from 'react';
+import { Container, Row, Button } from 'react-bootstrap';
 import CartContext from '../context/Context';
+// components
+import NavbarComponent from './Navbar';
+import CartItem from './CartItem';
+
 
 export interface ICartProps { }
 
 const Cart: React.FC<ICartProps> = props => {
   const cartContext = useContext(CartContext);
+  const cartItems = cartContext.cartState.cartItems;
+  const deckComplete = cartContext.deckComplete;
+
+  const [total, setTotal] = useState(0);
+  const [completeDeck, setCompleteDeck] = useState(false);
+
+
+  useEffect(() => {
+    setTotal(
+      cartItems.reduce((acc, _item) => acc + Number(_item.price), 0)
+    )
+
+    // let decksInCart = cartItems.some((_item) => _item.category === "decks");
+    // let trucksInCart = cartItems.some((_item) => _item.category === "trucks");
+    // let wheelsInCart = cartItems.some((_item) => _item.category === "wheels");
+
+    // if (decksInCart && trucksInCart && wheelsInCart) {
+    //   setCompleteDeck(true);
+    // }
+
+
+  }, [cartItems])
 
   return (
     <>
-      <Container>
-        {Object.keys(cartContext.cartState.items).length > 0 ?
-          <Row>
-            {Object.keys(cartContext.cartState.items).map((value, index) => {
-              let _items = cartContext.cartState.items[value];
-
-              if (_items.length > 0) {
-                return (
-                  <CartItem key={index} item={_items[0]} quantity={_items.length} />
-                )
-              }
-              else { return null }
-            })}
-          </Row>
-          :
-          <h3>Your cart is empty...</h3>
-
-        }
-      </Container>
+      <NavbarComponent colorShift="light" />
+      {deckComplete ?
+        (<div className="header">
+          <h1>Deck Complete!</h1>
+          <h3>Checkout to purchase board, or Save Board to add it to your Board List.</h3>
+        </div>)
+        : null}
+      <div className="cart-container">
+        <Container className="cart-items-container">
+          {cartItems.length ?
+            <Row>
+              {cartItems.map(_item => <CartItem key={_item.id} item={_item} quantity={1} />)}
+            </Row> :
+            <h3>No parts selected yet...</h3>}
+        </Container>
+        <div className="register">
+          <p>Total: S{total}</p>
+          <Button variant="outline-primary">Checkout</Button>
+          <Button variant="outline-primary">Save Board</Button>
+        </div>
+      </div>
     </>
   )
 }

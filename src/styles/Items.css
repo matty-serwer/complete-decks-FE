@@ -1,0 +1,27 @@
+.items {
+  background-color: #fcfcfc;
+}
+
+.breadcrumb-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* .cat-breadcrumb {
+  border: 1px solid blue;
+  align-items: center ;
+} */
+
+.cat-breadcrumb ol{
+  background-color: #fcfcfc !important;
+  align-self: center;
+  font-size: 40px;
+}
+
+.cat-breadcrumb li {
+  color: #3d3d3d !important;
+}
+
+.cat-breadcrumb li a {
+  color: #4762E6;
+}
