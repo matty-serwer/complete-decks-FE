@@ -5,6 +5,7 @@ import { PropagateLoader } from 'react-spinners';
 import { useQuery } from '../hooks'
 import { IItem } from '../context/types';
 import CartContext from '../context/Context';
+import axios from 'axios';
 // components
 import ItemComponent from './Item';
 import NavbarComponent from './Navbar';
@@ -15,10 +16,19 @@ import itemsData from '../data.json';
 
 interface IItemsProps { }
 
-const setItems = (itemsList: IItem[]): void => {
-  itemsList = itemsData.PARTS_LIST_DATA;
-}
+const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev";
 
+const fetchItems = () => {
+  axios
+    .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev/items`)
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+}
 
 const Items: React.FC<IItemsProps> = (props) => {
   const cartContext = useContext(CartContext);
@@ -32,8 +42,8 @@ const Items: React.FC<IItemsProps> = (props) => {
   let history = useHistory();
 
   useEffect(() => {
-    // setTimeout(() => setItemsList(itemsData.PARTS_LIST_DATA), 2000)
-    setItemsList(itemsData.PARTS_LIST_DATA)
+    // setItemsList(itemsData.PARTS_LIST_DATA)
+    fetchItems();
   }, []);
 
   useEffect(() => {

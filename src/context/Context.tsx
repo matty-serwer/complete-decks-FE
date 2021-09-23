@@ -16,22 +16,6 @@ export const initialCartState: ICartState = {
   cartItems: []
 }
 
-// export interface IItemsActions {
-//   type: 'SET_ITEMS' | 'LOADING_ITEMS';
-// }
-
-// export interface IItemsState {
-//   items: IItem[];
-// }
-
-// export const initialItemsState: IItemsState = {
-//   items: []
-// }
-
-// export const itemsReducer = (state: IItemsState, action: IItemsActions) => {
-
-// }
-
 export const cartReducer = (state: ICartState, action: ICartActions) => {
   let cartItems = state.cartItems;
 

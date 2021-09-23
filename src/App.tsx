@@ -59,7 +59,7 @@ const App: React.FC<IApplicationProps> = props => {
         <BrowserRouter>
           <div className='App'>
             {/* <NavbarComponent /> */}
-            <Status />
+            {/* <Status /> */}
             <Route exact path='/' component={Start} />
             <Route path='/categories' component={Categories} />
             <Route path='/items' component={Items} />
