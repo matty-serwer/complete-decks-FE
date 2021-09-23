@@ -1,25 +1,81 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react';
-import { Container, Form, Col, Row, Button } from 'react-bootstrap';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import React, { useState, SyntheticEvent } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Container, Form, Col, Row, Button, Modal } from 'react-bootstrap';
+// import { getEffectiveConstraintOfTypeParameter } from 'typescript';
+
+import UserPool from "./UserPool";
+import AWS from 'aws-sdk'; // must be set up for verification.
 
 interface IRegisterFormProps { }
 
 const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [secondPassword, setSecondPassword] = useState("");
- 
+  const [givenName, setGivenName] = useState("");
+  const [familyName, setFamilyName] = useState("");
+  const [error, setError] = useState("");
+
+  const [clientId, setClientId] = useState("");
+  const [confirmationCode, setConfirmationCode] = useState("");
+  const [confError, setConfError] = useState("");
+  const [showConfModal, setShowConfModal] = useState(false);
+
+  const history = useHistory();
+
+  var cIDProvider = new AWS.CognitoIdentityServiceProvider({
+    region: 'us-east-2'
+  });
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    const newUser = { 
-      email: email,
-      password: password
+    const attributeList = [
+      new CognitoUserAttribute({
+        Name: 'given_name',
+        Value: givenName
+      }),
+      new CognitoUserAttribute({
+        Name: 'family_name',
+        Value: familyName
+      }),
+      new CognitoUserAttribute({
+        Name: 'email',
+        Value: email
+      })
+    ]
+
+    UserPool.signUp(username, password, attributeList, null, (err, data) => {
+      if (err) {
+        console.error(err);
+        setError(err.message);
+      } else {
+        console.log(data);
+        setClientId(data?.user.pool.clientId);
+        setError("");
+        setShowConfModal(true);
+      }
+    })
+
+  }
+
+  const handleConfirm = (event: SyntheticEvent) => {
+    event.preventDefault();
+    var params = {
+      ClientId: clientId,
+      ConfirmationCode: confirmationCode,
+      Username: username
     }
-    // POST HERE
-    console.log("New User: ", newUser);
-    setEmail("");
-    setPassword("");
-    setSecondPassword("");
+    cIDProvider.confirmSignUp(params, (err, data) => {
+      if (err) {
+        console.error(err)
+        setConfError(err.message);
+      } else {
+        console.log(data)
+        setConfError("");
+        history.push('/login')
+      }
+    })
   }
 
   return (
@@ -35,31 +91,87 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
           </Col>
         </Form.Group>
 
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalUsername">
+          <Form.Label column sm={3}>
+            Username
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control type="text" placeholder="Choose a Username" onChange={(e) => setUsername(e.target.value)} />
+          </Col>
+        </Form.Group>
+
+
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
           <Form.Label column sm={3}>
             Password
           </Form.Label>
           <Col sm={8}>
-            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formHorizontalPasswordCheck">
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalFirstName">
           <Form.Label column sm={3}>
-            Re-Type Password
+            First Name
           </Form.Label>
           <Col sm={8}>
-            <Form.Control type="password" placeholder="Password" onChange={(e) => setSecondPassword(e.target.value)} />
+            <Form.Control type="text" placeholder="First Name" onChange={(e) => setGivenName(e.target.value)} />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalLastName">
+          <Form.Label column sm={3}>
+            Last Name
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control type="text" placeholder="Last Name" onChange={(e) => setFamilyName(e.target.value)} />
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit">Register</Button>
+            <Button type="submit" variant="outline-primary">Register</Button>
           </Col>
         </Form.Group>
       </Form>
-    </Container>
+      {error.length > 0 ? (
+        <p className="reg-error">{error}</p>
+      ) : (
+        null
+      )}
+
+      <Modal show={showConfModal} onHide={() => setShowConfModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Please Verify Your Email</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          A verification code has been sent to your email. Please enter it below to complete your registration.
+          <Form onSubmit={handleConfirm}>
+            <Form.Group as={Row} className="mb-4" controlId="formHorizontalConfirm">
+              <Form.Label column>
+                Enter Code
+              </Form.Label>
+              <Col sm={8}>
+                <Form.Control type="text" placeholder="#######" onChange={(e) => setConfirmationCode(e.target.value)} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} className="mb-3">
+              <Col>
+                <Button variant="outline-primary" type="submit">
+                  Enter
+                </Button>
+              </Col>
+            </Form.Group>
+          </Form>
+          {confError.length > 0 ? (
+            <p className="conf-error">{confError}</p>
+          ) : (
+            null
+          )}
+          </Modal.Body>
+      </Modal>
+    </Container >
   )
 }
 

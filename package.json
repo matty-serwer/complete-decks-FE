@@ -13,6 +13,8 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
     "@types/styled-components": "^5.1.14",
+    "amazon-cognito-identity-js": "^5.1.1",
+    "aws-sdk": "^2.993.0",
     "bootstrap": "^4.6.0",
     "dotenv": "^10.0.0",
     "icons": "^1.0.0",

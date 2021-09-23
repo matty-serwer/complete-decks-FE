@@ -13,8 +13,12 @@ import Categories from './components/Categories';
 import Items from './components/Items';
 import Cart from './components/Cart';
 import NavbarComponent from './components/Navbar';
+import Status from './context/Status';
+// forms
 import RegisterForm from './forms/Register';
-
+import LoginForm from './forms/Login';
+import VerificationForm from './forms/Verify';
+import { Account } from './context/Account';
 // data
 import productList from './data.json';
 
@@ -48,19 +52,25 @@ const App: React.FC<IApplicationProps> = props => {
   }, [cartItems])
 
   // console.log(cartState);
-  
+
   return (
     <CartContextProvider value={cartContextValues}>
-      <BrowserRouter>
-        <div className='App'>
-          {/* <NavbarComponent /> */}
-          <Route exact path='/' component={Start} />
-          <Route path='/categories' component={Categories} />
-          <Route path='/items' component={Items} />
-          <Route path='/cart' component={Cart} />
-          <Route path='/register' component={RegisterForm} />
-        </div>
-      </BrowserRouter>
+      <Account>
+        <BrowserRouter>
+          <div className='App'>
+            {/* <NavbarComponent /> */}
+            <Status />
+            <Route exact path='/' component={Start} />
+            <Route path='/categories' component={Categories} />
+            <Route path='/items' component={Items} />
+            <Route path='/cart' component={Cart} />
+            <Route path='/register' component={RegisterForm} />
+            <Route path='/verify' component={VerificationForm} />
+            <Route path='/login' component={LoginForm} />
+
+          </div>
+        </BrowserRouter>
+      </Account>
     </CartContextProvider>
   );
 }
