@@ -61,7 +61,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       </Card>
 
       {/* Category Modal */}
-      <Modal show={showCatModal} onHide={() => setShowCatModal(false)}>
+      <Modal show={showCatModal} className="cat-modal" onHide={() => setShowCatModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Uh Oh!</Modal.Title>
         </Modal.Header>
@@ -71,10 +71,10 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
           <Modal.Body>It looks like you&apos;ve already selected {item.category}.</Modal.Body>
         )}
         <Modal.Footer>
-          <Button variant="outline-warning" onClick={() => swapHandler()}>
+          <Button variant="outline-warning shop-button" onClick={() => swapHandler()}>
             Swap It Out!
           </Button>
-          <Button variant="outline-primary" onClick={() => setShowCatModal(false)}>
+          <Button variant="outline-primary shop-button" onClick={() => setShowCatModal(false)}>
             Go Back
           </Button>
         </Modal.Footer>

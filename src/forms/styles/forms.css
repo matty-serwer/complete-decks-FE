@@ -1,0 +1,34 @@
+
+.user-form {
+  font-family: 'Mulish', sans-serif !important;
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: 800;
+  margin: 18vh 0 4vh;
+}
+
+.register-button {
+  margin-top: 2vh;
+}
+
+.signup-button {
+  margin-top: 2vh;
+}
+
+input {
+  border-radius: 0px !important;
+}
+
+.form-link-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 7vw;
+  margin-top: 4vh;
+}
+
+.form-link:hover {
+  text-decoration: none;
+  color: #52E3BF;
+}

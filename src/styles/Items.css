@@ -1,5 +1,7 @@
 .items {
   background-color: #fcfcfc;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
 }
 
 .breadcrumb-container {
@@ -24,4 +26,9 @@
 
 .cat-breadcrumb li a {
   color: #4762E6;
+}
+
+.cat-breadcrumb li a:hover {
+  color: #5BFCA6;
+  text-decoration: none;
 }

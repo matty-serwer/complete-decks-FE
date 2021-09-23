@@ -1,5 +1,8 @@
 .categories {
-  background-color: #fcfcfc;
+  background-color: #eaebee;
+  font-family: 'Mulish', sans-serif !important;
+  height: 100vh;
+  min-height: 100%;
 }
 
 .cat-header {
@@ -11,39 +14,64 @@
 }
 
 .cat-title {
-  color: white;
+  color: #4762E6;
   font-size: 60px;
-  padding-top: 10vh;
-  padding-bottom: 5vh;
+  padding-top: 8vh;
+  padding-bottom: 10vh;
 }
 
 .body-container {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-top: 6vh;
 }
 
 .button-container{
-  width: 1000px;
+  display: flex;
+  /* justify-content: center; */
   padding-top: 5vh;
+  padding-right: 20px
 }
 
-.d-button {
+.buttons-left{
+  /* border: 1px solid blue; */
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+.buttons-right{
+  /* border: 1px solid blue; */
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.decks-button {
+  border: 2px solid #4762E6;
   font-size: 80px;
-  border-width: 5px;
-  border-radius: 20px;
-  padding-top: 18.5vh;
-  padding-bottom: 18.5vh;
-  margin-right: 20px;
+  /* border-radius: 20px; */
+  padding-top: 115px;
+  padding-bottom: 117px;
+  width: 280px;
+  margin-left: 30px;
+}
+
+.cat-button:hover {
+  text-decoration: none !important;
+  color: #52E3BF !important;
+  border-color: #52E3BF;
 }
 
 .tw-button {
+  border: 2px solid #4762E6;
   font-size: 80px;
-  border-width: 5px;
-  border-radius: 20px;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  width: 400px;
+  /* border-radius: 20px; */
+  padding-top: 22px;
+  padding-bottom: 22px;
+  width: 300px;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .wheels {

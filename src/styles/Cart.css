@@ -1,3 +1,11 @@
+.cart-component {
+  font-family: 'Mulish', sans-serif;
+}
+
+.cart-body {
+  font-weight: 600;
+}
+
 .header {
   margin: 3vh 0;
 }
@@ -11,20 +19,26 @@
   font-size: 25px;
 }
 
-.register {
+.total-container {
   /* border: 1px solid blue; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: center;
+  margin: 3vh 0;
 }
 
-.register p {
+.total {
   font-size: 20px;
   margin-bottom: 5px;
+  border-bottom: 1px solid black;
+  width: 200px;
 }
 
 .button-container {
   /* border: 1px solid blue; */
   padding-top: 13px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .reg-button {
