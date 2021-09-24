@@ -28,4 +28,26 @@
 .shop-button {
   padding: 9px 12px;
   margin-bottom: 15px;
+  font-weight: 800;
+  border-radius: 0px;
+}
+
+.shop-button:hover {
+  background-color: #52E3BF !important;
+  color: white !important;
+  border-color: #52E3BF !important;
+}
+
+.cat-modal {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
+}
+
+.cat-modal .close {
+  color: #4762E6 !important;
+  /* width: 50px; */
+}
+
+.cat-modal .close:hover {
+  color: #52E3BF !important;
 }

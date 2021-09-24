@@ -13,25 +13,32 @@ function Start() {
 
   return (
     <div className="categories">
-      <div className="cat-header">
-        <NavbarComponent />
+      <NavbarComponent colorShift='light' />
+      <Container>
         <h1 className="cat-title">Board Components</h1>
-      </div>
-      <div className="body-container">
-        <Row className="button-container">
-          <Col md={1} />
+        <div className="body-container">
+          <Row className="button-container">
+            {/* <Col md={1} />
           <Col md={4}>
             <Button as={Link} to='/items?category=decks' variant="outline-primary" className="d-button">DECKS</Button>
           </Col>
           <Col className="tw-col">
             <Button as={Link} to='/items?category=trucks' variant="outline-primary" className="tw-button">TRUCKS</Button>
             <Button as={Link} to='/items?category=wheels' variant="outline-primary" className="tw-button wheels">WHEELS</Button>
-          </Col>
-        </Row>
-      </div>
-      <Link to='/items?category=decks'>Decks</Link>
-      <Link to='/items?category=trucks'>Trucks</Link>
-      <Link to='/items?category=wheels'>Wheels</Link>
+          </Col> */}
+            <div className="buttons-left">
+              <Link to='/items?category=decks' className="decks-button cat-button">Decks</Link>
+            </div>
+            <div className="buttons-right">
+              <Link to='/items?category=trucks' className="tw-button cat-button">Trucks</Link>
+              <Link to='/items?category=wheels' className="tw-button cat-button">Wheels</Link>
+            </div>
+          </Row>
+        </div>
+      </Container>
+        {/* <Link to='/items?category=decks'>Decks</Link>
+        <Link to='/items?category=trucks'>Trucks</Link>
+        <Link to='/items?category=wheels'>Wheels</Link> */}
     </div>
   )
 }

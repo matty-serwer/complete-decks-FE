@@ -2,6 +2,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import './bootstrap.css';
 
 // Context
 import { IItem } from './context/types';

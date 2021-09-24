@@ -8,16 +8,29 @@
 }
 
 .title {
+  font-family: 'Nothing You Could Do', cursive;
   color: white;
   font-size: 70px;
   padding-top: 20vh;
   padding-bottom: 15vh;
 }
 
-.start-button {
-  color: white;
-  font-size: 100px;
-  border-color: white;
-  border-width: 5px;
-  border-radius: 20px;
+.title:hover {
+  color: #52E3BF !important;
 }
+
+.start-button {
+  font-family: 'Mulish', sans-serif;
+  color: white !important;
+  font-size: 100px !important;
+  border: 2px solid white;
+  border-radius: 0px !important;
+  padding: 4px 30px 6px !important;
+}
+
+.start-button:hover {
+  text-decoration: none;
+  color: #52E3BF !important;
+  border-color: #52E3BF;
+}
+

@@ -36,31 +36,34 @@ const Cart: React.FC<ICartProps> = props => {
   }, [cartItems])
 
   return (
-    <>
+    <div className="cart-component">
       <NavbarComponent colorShift="light" />
-      {deckComplete ?
-        (<div className="header">
-          <h1>Deck Complete!</h1>
-          <h3>Checkout to purchase board, or Save Board to add it to your Board List.</h3>
-        </div>)
-        : null}
-      <div className="cart-container">
-        <Container className="cart-items-container">
-          {cartItems.length ?
-            <Row>
-              {cartItems.map(_item => <CartItem key={_item.productId} item={_item} />)}
-            </Row> :
-            <h3>No parts selected yet...</h3>}
-        </Container>
-        <div className="register">
-          <p>Total: S{total}</p>
-          <div className="button-container">
-            <Button variant="outline-primary" className="reg-button">Checkout</Button>
-            <Button variant="outline-primary" className="reg-button">Save Board</Button>
+      <div className="cart-body">
+        {deckComplete ?
+          (<div className="header">
+            <h1>Deck Complete!</h1>
+            <h3>Checkout to purchase board, or Save Board to add it to your Board List.</h3>
+          </div>)
+          : null}
+        <div className="cart-container">
+          <Container className="cart-items-container">
+            {cartItems.length ?
+              <Row>
+                {cartItems.map(_item => <CartItem key={_item.productId} item={_item} />)}
+              </Row> :
+              <h3>No parts selected yet...</h3>}
+          </Container>
+          <div className="total-container">
+            <p className="total"> Total: ${total}</p>
           </div>
+          <div className="button-container">
+            <Button variant="outline-primary" className="reg-button shop-button">Save Board</Button>
+            <Button variant="outline-primary" className="reg-button shop-button">Checkout</Button>
+          </div>
+
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
