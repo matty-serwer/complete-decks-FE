@@ -28,8 +28,8 @@
 .shop-button {
   padding: 9px 12px;
   margin-bottom: 15px;
-  font-weight: 800;
-  border-radius: 0px;
+  font-weight: 800 !important;
+  border-radius: 0px !important;
 }
 
 .shop-button:hover {
