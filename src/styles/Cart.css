@@ -1,5 +1,8 @@
 .cart-component {
   font-family: 'Mulish', sans-serif;
+  background-color: #f7f7f8;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .cart-body {
@@ -25,6 +28,16 @@
   /* flex-direction: column; */
   justify-content: center;
   margin: 3vh 0;
+}
+
+.cart-link {
+  font-size: 20px;
+  left: 15px;
+}
+
+.cart-link:hover {
+  text-decoration: none;
+  color: #52E3BF;
 }
 
 .total {

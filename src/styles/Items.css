@@ -1,5 +1,5 @@
 .items {
-  background-color: #fcfcfc;
+  background-color: #f7f7f8;
   font-family: 'Mulish', sans-serif;
   font-weight: 600;
 }
@@ -15,7 +15,7 @@
 } */
 
 .cat-breadcrumb ol{
-  background-color: #fcfcfc !important;
+  background-color: #f7f7f8 !important;
   align-self: center;
   font-size: 40px;
 }
