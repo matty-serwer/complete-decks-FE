@@ -48,7 +48,7 @@ const Cart: React.FC<ICartProps> = props => {
         <Container className="cart-items-container">
           {cartItems.length ?
             <Row>
-              {cartItems.map(_item => <CartItem key={_item.productId} item={_item} quantity={1} />)}
+              {cartItems.map(_item => <CartItem key={_item.productId} item={_item} />)}
             </Row> :
             <h3>No parts selected yet...</h3>}
         </Container>
