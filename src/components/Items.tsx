@@ -18,17 +18,17 @@ interface IItemsProps { }
 
 const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev";
 
-const fetchItems = () => {
-  axios
-    .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev/items`)
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+// const fetchItems = () => {
+//   axios
+//     .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2/products`)
+//     .then(response => {
+//       console.log(response.data)
+//     })
+//     .catch(error => {
+//       console.log(error)
+//     })
 
-}
+// }
 
 const Items: React.FC<IItemsProps> = (props) => {
   const cartContext = useContext(CartContext);
@@ -43,7 +43,14 @@ const Items: React.FC<IItemsProps> = (props) => {
 
   useEffect(() => {
     // setItemsList(itemsData.PARTS_LIST_DATA)
-    fetchItems();
+    axios
+      .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2/products`)
+      .then(response => {
+        setItemsList(response.data.products)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }, []);
 
   useEffect(() => {
@@ -76,24 +83,24 @@ const Items: React.FC<IItemsProps> = (props) => {
           {isLoading ?
             <PropagateLoader size={20} color="#1cdbce" />
             :
-            itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.id} item={_item} />)
+            itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />)
             )}
         </Row>
 
         <Modal show={showCompModal} onHide={() => setShowCompModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Deck Complete!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>You&apos;re deck is complete! Go check it out in the cart.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => handleToCart()}>
-            Go To Cart
-          </Button>
-          <Button variant="primary" onClick={() => setShowCompModal(false)}>
-            Go Back
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Deck Complete!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>You&apos;re deck is complete! Go check it out in the cart.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => handleToCart()}>
+              Go To Cart
+            </Button>
+            <Button variant="primary" onClick={() => setShowCompModal(false)}>
+              Go Back
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </div>
   )
