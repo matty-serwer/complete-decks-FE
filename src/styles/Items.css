@@ -32,3 +32,7 @@
   color: #5BFCA6;
   text-decoration: none;
 }
+
+.strike-thru {
+  text-decoration: line-through;
+}

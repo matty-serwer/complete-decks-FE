@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Dispatch, SetStateAction } from 'react';
 import { Col, Card, Button, Modal } from 'react-bootstrap';
 import CartContext from './../context/Context';
 import { IItem } from './../context/types';
@@ -8,10 +8,11 @@ import { Item } from 'react-bootstrap/lib/Breadcrumb';
 
 interface IItemComponentProps {
   item: IItem;
+  setDrawerOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const ItemComponent: React.FC<IItemComponentProps> = (props) => {
-  const { item } = props;
+  const { item, setDrawerOpen } = props;
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
 
@@ -24,6 +25,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       setShowCatModal(true);
     } else {
       cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
+      setDrawerOpen(true);
     }
   }
 
@@ -34,6 +36,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
     }
     cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
     setShowCatModal(false);
+    setDrawerOpen(true);
   }
 
   return (

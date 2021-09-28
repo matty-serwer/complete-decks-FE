@@ -9,15 +9,15 @@
   font-weight: 600;
 }
 
-.header {
-  margin: 3vh 0;
+.cart-header {
+  margin: .5vh 0;
 }
 
-.header h1 {
+.cart-header h1 {
   color: #4762E6;
 }
 
-.header h3 {
+.cart-header h3 {
   color: #4762E6;
   font-size: 25px;
 }
@@ -27,12 +27,20 @@
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
-  margin: 3vh 0;
+  margin: 2.4vh 0;
+}
+
+.need-items {
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3vw;
 }
 
 .cart-link {
-  font-size: 20px;
-  left: 15px;
+  color: #4762E6;
+  font-size: 23px;
+  left: 20vw;
 }
 
 .cart-link:hover {
@@ -56,4 +64,8 @@
 
 .reg-button {
   margin: 0 7px;
+}
+
+.no-parts {
+  margin: 20vh 0;
 }

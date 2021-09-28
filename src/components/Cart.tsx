@@ -43,7 +43,7 @@ const Cart: React.FC<ICartProps> = props => {
       <NavbarComponent colorShift="light" />
       <div className="cart-body">
         {deckComplete ?
-          (<div className="header">
+          (<div className="cart-header">
             <h1>Deck Complete!</h1>
             <h3>Checkout to purchase board, or Save Board to add it to your Board List.</h3>
           </div>)
@@ -54,7 +54,7 @@ const Cart: React.FC<ICartProps> = props => {
               <Row>
                 {cartItems.map(_item => <CartItem key={_item.productId} item={_item} />)}
               </Row> :
-              <h3>No parts selected yet...</h3>}
+              <h3 className="no-parts">No parts selected yet...</h3>}
           </Container>
           <div className="total-container">
             <p className="total"> Total: ${total}</p>
