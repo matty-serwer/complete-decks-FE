@@ -1,27 +1,29 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+//styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './bootstrap.css';
-
 // Context
 import { IItem } from './context/types';
 import { CartContextProvider, cartReducer, initialCartState } from './context/Context';
-
 // components
 import Start from './components/Start'
 import Categories from './components/Categories';
 import Items from './components/Items';
 import Cart from './components/Cart';
-import NavbarComponent from './components/Navbar';
-import Status from './context/Status';
+import BoardList from './components/BoardList';
+// import NavbarComponent from './components/Navbar';
+// import Status from './context/Status';
 // forms
 import RegisterForm from './forms/Register';
 import LoginForm from './forms/Login';
 import VerificationForm from './forms/Verify';
 import { Account } from './context/Account';
 // data
-import productList from './data.json';
+// import productList from './data.json';
+// utils
+import PrivateRoute from './utils/PrivateRoute';
 
 
 export interface IApplicationProps { }
@@ -68,7 +70,7 @@ const App: React.FC<IApplicationProps> = props => {
             <Route path='/register' component={RegisterForm} />
             <Route path='/verify' component={VerificationForm} />
             <Route path='/login' component={LoginForm} />
-
+            <PrivateRoute path='/boardlist' component={BoardList} />
           </div>
         </BrowserRouter>
       </Account>

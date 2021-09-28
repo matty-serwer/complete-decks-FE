@@ -10,13 +10,20 @@ interface INavbarProps {
 }
 
 const NavbarComponent: React.FC<INavbarProps> = props => {
-
   let colorShift = "dark"
   if (props.colorShift) {
     colorShift = props.colorShift;
   }
-  console.log(colorShift);
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, [])
 
   const cartContext = useContext(CartContext);
 
@@ -26,20 +33,24 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
         <Container>
           <Navbar.Brand as={Link} to="/" className={colorShift === "light" ? "navbar-brand-l" : "navbar-brand"}>Complete Decks</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link 
+            <Nav.Link
               className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
-              as={Link} 
-              to="/categories">Categories</Nav.Link>
+              as={Link}
+              to='/categories'>Categories</Nav.Link>
             <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
             <Nav.Link
               className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
               as={Link}
-              to="/cart">Shopping Cart</Nav.Link>
+              to='/cart'>Shopping Cart</Nav.Link>
             <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
-            <Nav.Link 
-              className={colorShift === "light" ? "navbar-link-l" : "navbar-link"} 
-              as={Link} 
-              to="/register">Sign Up!</Nav.Link>
+            {loggedIn ? (
+              <Nav.Link className={colorShift === "light" ? "navbar-link-l" : "navbar-link"} as={Link} to='/boardlist'>My Board List</Nav.Link>
+            ) : (
+              <Nav.Link
+                className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
+                as={Link}
+                to='/register'>Sign Up!</Nav.Link>
+            )}
           </Nav>
         </Container>
       </Navbar>

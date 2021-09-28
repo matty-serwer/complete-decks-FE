@@ -1,6 +1,6 @@
 import React, { useState, useContext, SyntheticEvent } from 'react';
 import { Container, Form, Col, Row, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import UserPool from './UserPool';
 // components 
@@ -18,34 +18,18 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
 
   const { authenticate } = useContext(AccountContext);
 
+  const history = useHistory();
+
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-
-    // const user = new CognitoUser({
-    //   Username: username,
-    //   Pool: UserPool
-    // })
-
-    // const authDetails = new AuthenticationDetails({
-    //   Username: username,
-    //   Password: password
-    // })
-
-    // user.authenticateUser(authDetails, {
-    //   onSuccess: (data) => {
-    //     console.log("onSuccess: ", data);
-    //   },
-    //   onFailure: (err) => {
-    //     console.error("onFailure: ", err);
-    //   },
-    //   newPasswordRequired: (data) => {
-    //     console.log("newPasswordRequired: ", data);
-    //   }
-    // })
+    let accessToken = "";
 
     authenticate(username, password)
       .then(data => {
         console.log("Logged in!", data);
+        accessToken = data.accessToken.jwtToken;
+        localStorage.setItem('accessToken', accessToken);
+        history.push('/categories');
       })
       .catch(err => {
         console.error("Failed to login", err);
