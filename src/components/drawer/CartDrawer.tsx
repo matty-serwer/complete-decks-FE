@@ -55,7 +55,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
       <div className="cart-body">
         {deckComplete ?
           (<div className="drawer-header">
-            <h1>Deck Complete!</h1>
+            <h1 className="animate-flicker">Deck Complete!</h1>
           </div>)
           : null}
         <div className="cart-container">

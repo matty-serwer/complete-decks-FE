@@ -14,8 +14,12 @@ function Start() {
   return (
     <div className="categories">
       <NavbarComponent colorShift='light' />
+      <div className="cat-header">
+      <h1 className="cat-title">Board Components</h1>
+      <div className="cat-image" />
+      </div>
       <Container>
-        <h1 className="cat-title">Board Components</h1>
+        
         <div className="body-container">
           <Row className="button-container">
             {/* <Col md={1} />
@@ -30,12 +34,16 @@ function Start() {
               <Link to='/items?category=decks' className="decks-button cat-button">Decks</Link>
             </div>
             <div className="buttons-right">
-              <Link to='/items?category=trucks' className="tw-button cat-button">Trucks</Link>
-              <Link to='/items?category=wheels' className="tw-button cat-button">Wheels</Link>
+              <Link to='/items?category=trucks' className="tw-button cat-button trucks-button">Trucks</Link>
+              <Link to='/items?category=wheels' className="tw-button cat-button wheels-button">Wheels</Link>
             </div>
           </Row>
         </div>
+        
       </Container>
+      <footer className="categories-footer">
+        <div className="copyright">©2021 Matthew Serwer</div>
+      </footer>
         {/* <Link to='/items?category=decks'>Decks</Link>
         <Link to='/items?category=trucks'>Trucks</Link>
         <Link to='/items?category=wheels'>Wheels</Link> */}

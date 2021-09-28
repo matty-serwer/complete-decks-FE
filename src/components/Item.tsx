@@ -1,5 +1,5 @@
 import React, { useState, useContext, Dispatch, SetStateAction } from 'react';
-import { Col, Card, Button, Modal } from 'react-bootstrap';
+import { Col, Row, Card, Button, Modal } from 'react-bootstrap';
 import CartContext from './../context/Context';
 import { IItem } from './../context/types';
 
@@ -17,6 +17,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
   const cartItems = cartContext.cartState.cartItems;
 
   const [showCatModal, setShowCatModal] = useState(false);
+  const [showDescModal, setShowDescModal] = useState(false);
 
   const addHandler = () => {
     let catInCart = cartItems.some((_item) => _item.category === item.category);
@@ -31,7 +32,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
 
   const swapHandler = () => {
     const oldPart = cartItems.find((_item) => _item.category === item.category);
-    if(oldPart) {
+    if (oldPart) {
       cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: oldPart });
     }
     cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
@@ -44,7 +45,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       <Card className="card">
         <Card.Body className="card-body">
           <Card.Title className="card-title">{item.name}</Card.Title>
-          <Card.Img src={item.image_url} className="card-image" />
+          <Card.Img src={item.image_url} className="card-image" onClick={() => setShowDescModal(true)} />
           <div className="card-bottom">
             <Card.Text className="price">
               ${item.price}
@@ -80,6 +81,36 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
           <Button variant="outline-primary shop-button" onClick={() => setShowCatModal(false)}>
             Go Back
           </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Description Modal */}
+      <Modal show={showDescModal} className="desc-modal" onHide={() => setShowDescModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title className="dm-name">{item.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Card.Img src={item.image_url} className="dm-image" />
+          <Row className="dm-description">{item.description}</Row>
+        </Modal.Body>
+        <Modal.Footer className="dm-footer">
+          <Button className="shop-button" variant="outline-primary" onClick={() => setShowDescModal(false)}>Close</Button>
+          {cartItems.some((_item) => _item.productId === item.productId) ? (
+            <Button className="remove-button shop-button" variant="outline-warning"
+              onClick={() => {
+                cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
+                setShowDescModal(false);
+              }}>
+              Remove Part
+            </Button>
+          ) : (
+            <Button className="add-button shop-button" variant="outline-primary" onClick={() => {
+              addHandler();
+              setShowDescModal(false);
+            }}>Add This Part</Button>
+          )}
+          <div className="dm-price">${item.price}</div>
+          
         </Modal.Footer>
       </Modal>
     </Col >

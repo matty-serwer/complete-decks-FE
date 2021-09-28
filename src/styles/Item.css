@@ -52,3 +52,17 @@
 .cat-modal .close:hover {
   color: #52E3BF !important;
 }
+
+.desc-modal {
+  font-family: 'Mulish', sans-serif;
+}
+
+.dm-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dm-price {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
