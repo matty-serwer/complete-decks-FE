@@ -18,7 +18,7 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("idToken")) {
       setLoggedIn(true);
     } else {
       setLoggedIn(false);

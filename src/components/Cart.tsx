@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, SyntheticEvent } from 'react';
 import { Container, Row, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link , useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import CartContext from '../context/Context';
@@ -27,6 +27,8 @@ const Cart: React.FC<ICartProps> = props => {
 
   const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
 
+  const { push } = useHistory();
+
 
   useEffect(() => {
     setTotal(
@@ -46,6 +48,7 @@ const Cart: React.FC<ICartProps> = props => {
     let trucksId = "";
     let wheelsId = "";
     let boardId = uuidv4();
+    const userId = localStorage.getItem('sub');
     cartItems.forEach((_item) => {
       if (_item.category === "decks") {
         deckId = _item.productId.toString();
@@ -55,25 +58,24 @@ const Cart: React.FC<ICartProps> = props => {
         wheelsId = _item.productId.toString();
       }
     })
-    
-    if (localStorage.getItem('accessToken')) {
-      let accessToken = localStorage.getItem('accessToken');
+
+    if (localStorage.getItem('idToken')) {
+      let idToken = localStorage.getItem('idToken');
       axios
         .post(`${BACKEND_URL}/board`, {
           "boardId": boardId,
-          "userId": "test1user",
+          "userId": userId,
           "deckId": deckId,
           "trucksId": trucksId,
           "wheelsId": wheelsId
         }, {
           headers: {
-            headers: {
-              'Authorization': accessToken,
-            }
+            "Authorization": idToken,
           }
         })
         .then((response: any) => {
           console.log(response);
+          push('/boardlist');
         })
         .catch((error) => {
           console.error(error);

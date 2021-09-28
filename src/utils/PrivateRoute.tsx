@@ -12,7 +12,7 @@ const PrivateRoute = ({ component:Component, ...rest }: IPrivateRouteProps) => {
         <Route
         {...rest}
         render={(props) => {
-            if (localStorage.getItem('accessToken')) {
+            if (localStorage.getItem('idToken')) {
                 return <Component {...props} />
             } else {
                 return <Redirect to='/login' />

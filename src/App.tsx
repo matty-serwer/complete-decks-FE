@@ -12,7 +12,7 @@ import Start from './components/Start'
 import Categories from './components/Categories';
 import Items from './components/Items';
 import Cart from './components/Cart';
-import BoardList from './components/BoardList';
+import BoardList from './components/BoardList/BoardList';
 // import NavbarComponent from './components/Navbar';
 // import Status from './context/Status';
 // forms

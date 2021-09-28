@@ -27,8 +27,12 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
     authenticate(username, password)
       .then(data => {
         console.log("Logged in!", data);
-        accessToken = data.accessToken.jwtToken;
-        localStorage.setItem('accessToken', accessToken);
+        const idToken = data.idToken.jwtToken;
+        const sub = data.idToken.payload.sub;
+        const firstName = data.idToken.payload.given_name;
+        localStorage.setItem('idToken', idToken);
+        localStorage.setItem('sub', sub);
+        localStorage.setItem('firstName', firstName);
         history.push('/categories');
       })
       .catch(err => {
