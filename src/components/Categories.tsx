@@ -18,7 +18,7 @@ function Start() {
       <h1 className="cat-title">Board Components</h1>
       <div className="cat-image" />
       </div>
-      <Container>
+      <Container className="body-bs-container">
         
         <div className="body-container">
           <Row className="button-container">

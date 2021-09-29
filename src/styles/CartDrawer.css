@@ -25,7 +25,9 @@
   flex-direction: column;
   font-size: 30px;
   margin-top: 10px;
-  margin-left: 9%;
+  margin-left: 2vw;
+  /* justify-content: center; */
+  /* border: 1px solid blue; */
 }
 
 .cart-link-drawer {
@@ -40,10 +42,11 @@
 .drawer-button-container {
   position: absolute;
   bottom: 0;
-  margin-left: 41.5%;
-  margin-bottom: 3vh;
+  /* margin-left: 41.5%; */
+  margin-bottom: 2vh;
   display: flex;
   width: 100%;
+  justify-content: center;
 
 }
 

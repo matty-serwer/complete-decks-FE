@@ -24,15 +24,24 @@
 .cat-title {
   color: #4762e6;
   font-size: 60px;
-  padding-top: 5vh;
-  padding-bottom: 1vh;
+  padding-top: 3vh;
+  /* padding-bottom: .5vh; */
+}
+
+.body-bs-container {
+  /* border: 1px solid blue; */
+  height: 55%;
 }
 
 .body-container {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-top: 9vh;
+  /* margin-top: 9vh; */
+  height: 100%;
+  /* min-height: 30vh; */
+  align-items: center;
+  /* border: 1px solid blue; */
 }
 
 .button-container {
