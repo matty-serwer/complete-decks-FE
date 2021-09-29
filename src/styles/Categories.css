@@ -159,7 +159,7 @@
 
 @keyframes slide-up {
   from {
-    margin-top: 140%;
+    margin-top: 300%;
   }
   to {
     margin-top: 0%;
@@ -167,7 +167,7 @@
 }
 
 .wheels-button {
-  margin-top: 150%;
+  margin-top: 300%;
   animation: slide-up 2s;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
