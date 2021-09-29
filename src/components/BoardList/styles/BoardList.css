@@ -1,0 +1,52 @@
+/* BoardList Component */
+
+.boardlist-header {
+  margin-top: 1.8vh;
+  margin-bottom: 5vh;
+  color: #4762E6;
+}
+
+/* Board Component */
+
+.board-header {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+ 
+.board-item-image {
+  max-height: 15vh;
+  width: auto;
+}
+
+.board-footer {
+  display: flex;
+  justify-content: space-around;
+  max-height: 70px;
+  background-color: rgb(252, 252, 252);
+}
+
+.board-footer .btn {
+  margin: 0;
+}
+
+/* Delete Modal */
+
+.delete-modal {
+  font-family: "Mulish", sans-serif;
+}
+
+.delete-modal-text {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.delete-modal-footer {
+  max-height: 70px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-modal-footer .btn {
+  margin-top: 0;
+}

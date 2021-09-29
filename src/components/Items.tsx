@@ -11,6 +11,7 @@ import ItemComponent from './Item';
 import NavbarComponent from './Navbar';
 import CartDrawer from './drawer/CartDrawer';
 import Backdrop from './drawer/Backdrop';
+import Loader from './Loader';
 //styles
 import '../styles/Items.css';
 
@@ -88,10 +89,9 @@ const Items: React.FC<IItemsProps> = (props) => {
           </Breadcrumb>
         </div>
         <Row>
-          {isLoading ?
-            <PropagateLoader size={20} color="#1cdbce" />
-            :
-            itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} setDrawerOpen={setDrawerOpen} />)
+          {itemsList.length ? 
+            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} setDrawerOpen={setDrawerOpen} />))) : (
+              <Loader/>
             )}
         </Row>
 

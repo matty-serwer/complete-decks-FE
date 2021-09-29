@@ -41,14 +41,28 @@
   position: absolute;
   bottom: 0;
   margin-left: 41.5%;
-  margin-bottom: 2vh;
+  margin-bottom: 3vh;
   display: flex;
   width: 100%;
+
+}
+
+.total {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .go-button-container {
-  margin-top: 3vh;
-  margin-bottom: vh;
+  margin-top: 0vh;
+  margin-bottom: 2vh;
+  /* margin-left: 120px; */
+}
+
+.close-button {
+  /* position: absolute;
+  left: -100px;
+  top: -130px; */
+  /* margin-right: 100px; */
 }
 
 /* Deck Complete Animation */

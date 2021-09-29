@@ -102,7 +102,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
           </div>
         </div>
         <div className="drawer-button-container">
-          <Button variant="outline-primary" className="shop-button" onClick={() => setDrawerOpen(false)}>Close</Button>
+          <Button variant="outline-primary" className="shop-button close-button" onClick={() => setDrawerOpen(false)}>Close</Button>
         </div>
       </div>
     </div>
