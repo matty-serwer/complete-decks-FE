@@ -9,20 +9,21 @@
 }
 
 .drawer-cart-item-title {
-  font-size: 25px;
+  font-size: 20px;
   /* min-height: 65px; */
-  min-height: 6vh;
+  font-weight: 600;
+  min-height: 5.5vh;
 }
 
 .drawer-cart-item-price {
   font-size: 18px;
   /* margin: 15px 0px 33px; */
   /* margin-top: 2vh; */
-  margin-bottom: 2vh; 
+  margin-bottom: 2.5vh; 
 }
 
 .drawer-cart-card {
   min-width: 100%;
   /* margin: 4px; */
-  height: 22vh;
+  height: 20vh;
 }
