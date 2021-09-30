@@ -15,8 +15,6 @@ import Loader from './Loader';
 //styles
 import '../styles/Items.css';
 
-import itemsData from '../data.json';
-
 interface IItemsProps { }
 
 const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2";
@@ -32,7 +30,7 @@ const Items: React.FC<IItemsProps> = (props) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const [deckStrikeClass, setDeckStrikeClass] = useState("");
-  const [trucksStrikeClass, settrucksStrikeClass] = useState("");
+  const [trucksStrikeClass, setTrucksStrikeClass] = useState("");
   const [wheelsStrikeClass, setWheelsStrikeClass] = useState("");
 
   let history = useHistory();
@@ -57,7 +55,7 @@ const Items: React.FC<IItemsProps> = (props) => {
       setDeckStrikeClass("strike-thru");
     }
     if (trucks) {
-      settrucksStrikeClass("strike-thru");
+      setTrucksStrikeClass("strike-thru");
     }
     if (wheels) {
       setWheelsStrikeClass("strike-thru");
@@ -89,9 +87,13 @@ const Items: React.FC<IItemsProps> = (props) => {
           </Breadcrumb>
         </div>
         <Row>
-          {itemsList.length ? 
-            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} setDrawerOpen={setDrawerOpen} />))) : (
-              <Loader/>
+          {itemsList.length ?
+            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} 
+              setDrawerOpen={setDrawerOpen} 
+              setDeckStrikeClass={setDeckStrikeClass} 
+              setTrucksStrikeClass={setTrucksStrikeClass} 
+              setWheelsStrikeClass={setWheelsStrikeClass} />))) : (
+              <Loader />
             )}
         </Row>
 

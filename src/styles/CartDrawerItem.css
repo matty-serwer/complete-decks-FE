@@ -12,7 +12,7 @@
   font-size: 20px;
   /* min-height: 65px; */
   font-weight: 600;
-  min-height: 5.5vh;
+  min-height: 5vh;
 }
 
 .drawer-cart-item-price {
@@ -26,4 +26,26 @@
   min-width: 100%;
   /* margin: 4px; */
   height: 20vh;
+}
+
+@media (max-width: 768px) {
+
+  .drawer-cart-item-title {
+    /* min-height: 5.5vh; */
+    font-size: 16px;
+    margin-bottom: 5px;
+
+  }
+
+  .card-body {
+    padding-top: 1rem;
+  }
+
+  .drawer-cart-item-price {
+    font-size: 16px;
+  }
+
+  .drawer-cart-card-image {
+    margin-top: 10px;
+  }
 }

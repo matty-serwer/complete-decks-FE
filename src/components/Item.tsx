@@ -9,15 +9,19 @@ import { Item } from 'react-bootstrap/lib/Breadcrumb';
 interface IItemComponentProps {
   item: IItem;
   setDrawerOpen: Dispatch<SetStateAction<boolean>>;
+  setDeckStrikeClass: Dispatch<SetStateAction<string>>;
+  setTrucksStrikeClass: Dispatch<SetStateAction<string>>;
+  setWheelsStrikeClass: Dispatch<SetStateAction<string>>;
 }
 
 const ItemComponent: React.FC<IItemComponentProps> = (props) => {
-  const { item, setDrawerOpen } = props;
+  const { item, setDrawerOpen, setDeckStrikeClass, setTrucksStrikeClass, setWheelsStrikeClass } = props;
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
 
   const [showCatModal, setShowCatModal] = useState(false);
   const [showDescModal, setShowDescModal] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
 
   const addHandler = () => {
     let catInCart = cartItems.some((_item) => _item.category === item.category);
@@ -28,6 +32,18 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
       setDrawerOpen(true);
     }
+  }
+
+  const removeHandler = () => {
+    cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
+    if (item.category === "decks") {
+      setDeckStrikeClass("")
+    } else if (item.category === "trucks") {
+      setTrucksStrikeClass("")
+    } else if (item.category === "wheels") {
+      setWheelsStrikeClass("")
+    }
+    setShowRemoveModal(false);
   }
 
   const swapHandler = () => {
@@ -52,9 +68,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
             </Card.Text>
             {cartItems.some((_item) => _item.productId === item.productId) ? (
               <Button className="remove-button shop-button" variant="outline-warning"
-                onClick={() => {
-                  cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
-                }}>
+                onClick={() => setShowRemoveModal(true)}>
                 Remove Part
               </Button>
             ) : (
@@ -110,7 +124,23 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
             }}>Add This Part</Button>
           )}
           <div className="dm-price">${item.price}</div>
-          
+
+        </Modal.Footer>
+      </Modal>
+
+      {/* Remove Modal */}
+      <Modal show={showRemoveModal} className="remove-modal" onHide={() => setShowRemoveModal(false)}>
+        <Modal.Header>
+          <Modal.Title>Remove item from cart</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you wish to remove this item?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-warning shop-button" onClick={() => removeHandler()}>
+            Yes, Remove item!
+          </Button>
+          <Button variant="outline-primary shop-button" onClick={() => setShowRemoveModal(false)}>
+            Go Back
+          </Button>
         </Modal.Footer>
       </Modal>
     </Col >

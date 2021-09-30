@@ -17,10 +17,10 @@ const CartDrawerItem: React.FC<ICartDrawerItemProps> = (props) => {
     <>
       <Card className="drawer-cart-card">
         <Row className="drawer-cart-card-row">
-          <Col md={4}>
+          <Col xs={4}>
             <Card.Img src={item.image_url} className="drawer-cart-card-image" />
           </Col>
-          <Col md={8}>
+          <Col xs={8}>
             <Card.Body>
               <Card.Title className="drawer-cart-item-title">{item.name}</Card.Title>
               <Card.Text className="drawer-cart-item-price">${item.price}</Card.Text>
