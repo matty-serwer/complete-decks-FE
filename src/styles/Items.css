@@ -36,3 +36,11 @@
 .strike-thru {
   text-decoration: line-through;
 }
+
+/* Media Query Mobile (sm) */
+
+@media (max-width: 576px) { 
+  .cat-breadcrumb ol {
+    font-size: 28px;
+  }
+}

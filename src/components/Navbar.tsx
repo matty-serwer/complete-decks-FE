@@ -29,29 +29,32 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
 
   return (
     <>
-      <Navbar variant="dark" className={colorShift}>
+      <Navbar variant="dark" expand="md" className={colorShift}>
         <Container>
-          <Navbar.Brand as={Link} to="/" className={colorShift === "light" ? "navbar-brand-l" : "navbar-brand"}>Complete Decks</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link
-              className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
-              as={Link}
-              to='/categories'>Categories</Nav.Link>
-            <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
-            <Nav.Link
-              className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
-              as={Link}
-              to='/cart'>Shopping Cart</Nav.Link>
-            <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
-            {loggedIn ? (
-              <Nav.Link className={colorShift === "light" ? "navbar-link-l" : "navbar-link"} as={Link} to='/boardlist'>My Board List</Nav.Link>
-            ) : (
+          <Navbar.Brand as={Link} to="/" className={colorShift === "light" ? "navbar-brand-l navbar-brand" : "navbar-brand"}>Complete Decks</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
               <Nav.Link
-                className={colorShift === "light" ? "navbar-link-l" : "navbar-link"}
+                className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"}
                 as={Link}
-                to='/register'>Sign Up!</Nav.Link>
-            )}
-          </Nav>
+                to='/categories'>Categories</Nav.Link>
+              <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
+              <Nav.Link
+                className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"}
+                as={Link}
+                to='/cart'>Shopping Cart</Nav.Link>
+              <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
+              {loggedIn ? (
+                <Nav.Link className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"} as={Link} to='/boardlist'>My Board List</Nav.Link>
+              ) : (
+                <Nav.Link
+                  className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"}
+                  as={Link}
+                  to='/register'>Sign Up!</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
