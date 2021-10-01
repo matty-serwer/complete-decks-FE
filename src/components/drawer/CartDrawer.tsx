@@ -69,13 +69,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
           <div className="total-container">
             <p className="total"> Total: ${total}</p>
           </div>
-          {cartItems.length === 3 ? (
-            <div className="go-button-container">
-              <Button variant="outline-primary" className="reg-button shop-button" onClick={() => handleGoToCart()}>Go To Cart!</Button>
-            </div>
-          ) : (
-            null
-          )}
+
           <div className="still-need">
             {cartItems.length < 3 ? (
               <span>Looks like you still need: </span>
@@ -102,7 +96,12 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
           </div>
         </div>
         <div className="drawer-button-container">
-          <Button variant="outline-primary" className="shop-button close-button" onClick={() => setDrawerOpen(false)}>Close</Button>
+          <Button variant="outline-primary" className="shop-button" onClick={() => setDrawerOpen(false)}>Close</Button>
+          {cartItems.length === 3 ? (
+            <Button variant="outline-primary" className="shop-button" onClick={() => handleGoToCart()}>Go To Cart!</Button>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     </div>

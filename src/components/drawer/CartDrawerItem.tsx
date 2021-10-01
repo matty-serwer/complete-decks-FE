@@ -21,10 +21,14 @@ const CartDrawerItem: React.FC<ICartDrawerItemProps> = (props) => {
             <Card.Img src={item.image_url} className="drawer-cart-card-image" />
           </Col>
           <Col xs={8}>
-            <Card.Body>
-              <Card.Title className="drawer-cart-item-title">{item.name}</Card.Title>
-              <Card.Text className="drawer-cart-item-price">${item.price}</Card.Text>
-              <Button variant="outline-warning" className="shop-button" onClick={() => cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })}>Remove From Cart?</Button>
+            <Card.Body className="drawer-card-body">
+              <div className="dc-body-left">
+                <Card.Title className="drawer-cart-item-title">{item.name}</Card.Title>
+                <Card.Text className="drawer-cart-item-price">${item.price}</Card.Text>
+              </div>
+              <div className="dc-body-right">
+                <Button variant="outline-warning" className="shop-button drawer-item-button" onClick={() => cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })}>Remove<span className="from-cart"></span></Button>
+              </div>
             </Card.Body>
           </Col>
         </Row>

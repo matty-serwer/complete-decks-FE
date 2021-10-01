@@ -1,51 +1,120 @@
+/* .card-body {
+  display: flex;
+  flex-direction: column;
+} */
+
+.drawer-cart-card {
+  min-width: 95%;
+  margin-left: 2.5%;
+}
+
 .drawer-cart-card-image {
   height: 80%;
   /* max-height: 210px; */
   max-height: 20vh;
   object-fit: cover;
-  margin-top: 9px;
-  margin-bottom: 0px;
+  /* margin-top: 1.4vh; */
+  margin-top: 7%;
+  /* margin-bottom: 0px; */
   margin-left: 20px;
 }
 
 .drawer-cart-item-title {
   font-size: 20px;
-  /* min-height: 65px; */
   font-weight: 600;
-  min-height: 5vh;
+  white-space: nowrap;
+  /* min-height: 5vh; */
+}
+
+.dc-body-left {
+  margin-bottom: 7%;
 }
 
 .drawer-cart-item-price {
   font-size: 18px;
-  /* margin: 15px 0px 33px; */
-  /* margin-top: 2vh; */
-  margin-bottom: 2.5vh; 
 }
 
+/* .drawer-item-button {
+  width: 200px;
+} */
+/* 
 .drawer-cart-card {
   min-width: 100%;
-  /* margin: 4px; */
   height: 20vh;
+} */
+
+.from-cart:after {
+  content: "\00a0 from cart?"
 }
 
-@media (max-width: 768px) {
+.from-cart {
+  display: inline-block;
+}
 
-  .drawer-cart-item-title {
-    /* min-height: 5.5vh; */
-    font-size: 16px;
-    margin-bottom: 5px;
+/* Media Query for Short Screens */
 
+@media (max-height: 820px) {
+  .drawer-cart-card-row {
+    max-height: 20vh;
   }
+  .drawer-card-body {
+    padding-top: 8%;
+    display: flex;
+    /* flex-direction: column; */
+    /* height: 15vh; */
+  }
+
+  .drawer-cart-card-image { 
+    height: 60%;
+    width: 60%;
+  }
+
+  .dc-body-left {
+    margin-bottom: 0;
+  }
+
+  .drawer-cart-item-title { 
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+  
+  .drawer-cart-item-price {
+    padding-top: 0;
+  }
+
+  .drawer-item-button {
+    margin-left: 80%;
+    margin-top: 10%;
+  }
+
+  .from-cart {
+    display: none;
+  }
+
+}
+
+/* Media Query Medium */
+
+@media (max-width: 768px) {
 
   .card-body {
     padding-top: 1rem;
   }
 
-  .drawer-cart-item-price {
-    font-size: 16px;
+  .drawer-cart-card-image {
+    margin-top: 2vh;;
   }
 
-  .drawer-cart-card-image {
-    margin-top: 10px;
+  .dc-body-left {
+    margin-bottom: 0%;
+  }
+
+  .drawer-cart-item-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .drawer-cart-item-price {
+    font-size: 16px;
   }
 }
