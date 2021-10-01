@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState, useContext, useEffect } from
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Container, Row } from 'react-bootstrap';
 import CartContext from '../../context/Context';
+import UIContext from '../../context/UIContext';
 // components 
 import CartDrawerItem from './CartDrawerItem';
 // styles
@@ -9,11 +10,11 @@ import '../../styles/CartDrawer.css'
 
 export interface ICartDrawerProps {
   show: boolean;
-  setDrawerOpen: Dispatch<SetStateAction<boolean>>;
+  // setDrawerOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
-  const { show, setDrawerOpen } = props;
+  const { show } = props;
   let drawerClass = "cart-drawer";
   if (show) {
     drawerClass = "cart-drawer open";
@@ -21,7 +22,9 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
 
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
-  const deckComplete = cartContext.deckComplete;
+
+  const uiContext = useContext(UIContext);
+  const drawerOpen = uiContext.uiState.drawerOpen;
 
   const [total, setTotal] = useState(0);
   const [deckInCart, setDeckInCart] = useState(false);
@@ -53,7 +56,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
   return (
     <div className={drawerClass}>
       <div className="cart-body">
-        {deckComplete ?
+        {cartItems.length === 3 ?
           (<div className="drawer-header">
             <h1 className="animate-flicker">Deck Complete!</h1>
           </div>)
@@ -78,17 +81,17 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
             )}
             <div className="need-items-drawer">
               {!deckInCart ? (
-                <Link to='/items?category=decks' className="cart-link-drawer" onClick={() => setDrawerOpen(false)}>a deck &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=decks' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>a deck &nbsp;&nbsp;&nbsp;&nbsp;</Link>
               ) : (
                 null
               )}
               {!trucksInCart ? (
-                <Link to='/items?category=trucks' className="cart-link-drawer" onClick={() => setDrawerOpen(false)}>trucks &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=trucks' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>trucks &nbsp;&nbsp;&nbsp;&nbsp;</Link>
               ) : (
                 null
               )}
               {!wheelsInCart ? (
-                <Link to='/items?category=wheels' className="cart-link-drawer" onClick={() => setDrawerOpen(false)}>wheels &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=wheels' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>wheels &nbsp;&nbsp;&nbsp;&nbsp;</Link>
               ) : (
                 null
               )}
@@ -96,7 +99,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
           </div>
         </div>
         <div className="drawer-button-container">
-          <Button variant="outline-primary" className="shop-button" onClick={() => setDrawerOpen(false)}>Close</Button>
+          <Button variant="outline-primary" className="shop-button" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>Close</Button>
           {cartItems.length === 3 ? (
             <Button variant="outline-primary" className="shop-button" onClick={() => handleGoToCart()}>Go To Cart!</Button>
           ) : (

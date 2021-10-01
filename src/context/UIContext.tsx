@@ -1,20 +1,22 @@
 import { createContext } from 'react';
 
 export interface IUIActions {
-  type: 'ADD_STRIKE_CLASS' | 'REMOVE_STRIKE_CLASS';
-  payload: string;
+  type: "ADD_STRIKE_CLASS" | "REMOVE_STRIKE_CLASS" | "SET_SHOW_DRAWER" | "SET_HIDE_DRAWER";
+  payload?: string;
 }
 
 export interface IUIState {
   deckStrikeClass: string;
   trucksStrikeClass: string;
   wheelsStrikeClass: string;
+  drawerOpen: boolean;
 }
 
 export const initialUIState: IUIState = {
   deckStrikeClass: "",
   trucksStrikeClass: "",
-  wheelsStrikeClass: ""
+  wheelsStrikeClass: "",
+  drawerOpen: false
 }
 
 export const uiReducer = (state: IUIState, action: IUIActions) => {
@@ -25,7 +27,6 @@ export const uiReducer = (state: IUIState, action: IUIActions) => {
   switch (action.type) {
 
     case 'ADD_STRIKE_CLASS':
-
       if (action.payload === 'decks') {
         console.log('decks in reducer')
         return { ...state, deckStrikeClass: "strike-thru" }
@@ -43,7 +44,6 @@ export const uiReducer = (state: IUIState, action: IUIActions) => {
       }
 
     case 'REMOVE_STRIKE_CLASS':
-
       if (action.payload === 'decks') {
         console.log('decks in reducer')
         return { ...state, deckStrikeClass: "" }
@@ -59,6 +59,13 @@ export const uiReducer = (state: IUIState, action: IUIActions) => {
         console.log("incorrect payload");
         return state;
       }
+
+    case "SET_SHOW_DRAWER":
+      return { ...state, drawerOpen: true }
+
+    case "SET_HIDE_DRAWER":
+      return { ...state, drawerOpen: false } 
+      
     default:
       return state;
   }
