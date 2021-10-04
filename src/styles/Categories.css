@@ -12,53 +12,35 @@
   background-repeat: no-repeat;
   position: relative;
   box-shadow: inset 0 0 100px rgb(255, 255, 255);
-  /* background: rgb(2, 0, 36);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(74, 74, 139, 0.9954545454545455) 25%,
-    rgba(255, 255, 255, 1) 100%
-  ); */
 }
 
 .cat-title {
   color: #4762e6;
   font-size: 60px;
   padding-top: 3vh;
-  /* padding-bottom: .5vh; */
+  margin-bottom: 0;
 }
 
-.body-bs-container {
-  /* border: 1px solid blue; */
-  height: 55%;
+.cat-subtitle {
+  margin-bottom: 10px;
 }
 
 .body-container {
   display: flex;
   justify-content: center;
   text-align: center;
-  /* margin-top: 9vh; */
   height: 100%;
-  /* min-height: 30vh; */
   align-items: center;
-  /* border: 1px solid blue; */
+}
+
+.body-bs-container {
+  margin-top: 8vh;
 }
 
 .button-container {
   display: flex;
-  /* justify-content: center; */
   padding-top: 5vh;
   padding-right: 20px;
-}
-
-@keyframes slide-right {
-  from {
-    margin-right: 160%;
-  }
-
-  to {
-    margin-right: 10px;
-  }
 }
 
 .buttons-left {
@@ -66,7 +48,6 @@
   min-width: 320px;
   display: flex;
   flex-direction: column;
-
 }
 .buttons-right {
   /* border: 1px solid blue; */
@@ -92,35 +73,6 @@
   margin-left: 10px;
 }
 
-/* Fade In Animation */
-
-@keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-
-@-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-
-@-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-
-@-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-
-@-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-
-/* END Fade In Animation */
-
 .decks-button {
   border: 2px solid #4762e6;
   font-size: 80px;
@@ -139,31 +91,12 @@
   animation-fill-mode: forwards;
 }
 
-@keyframes slide-left {
-  from {
-    margin-left: 400%;
-  }
-
-  to {
-    margin-left: 10px;
-  }
-}
-
 .trucks-button {
   margin-left: 400%;
   animation: slide-left 2s;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
   white-space: nowrap;
-}
-
-@keyframes slide-up {
-  from {
-    margin-top: 300%;
-  }
-  to {
-    margin-top: 0%;
-  }
 }
 
 .wheels-button {
@@ -185,23 +118,234 @@
 
 .categories-footer {
   height: 15vh;
-  /* background-image: url(../images/pexels-olia-danilevich-4734805.jpg); */
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  /* box-shadow: inset 0 0 100px rgb(255, 255, 255); */
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-
+  background-color: #f7f7f8;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .copyright {
-  color: black;
+  color: rgb(71, 71, 71);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 15px;
+}
+
+/* Media Queryies Start */
+
+/* Media Query Medium */
+
+@media (max-width: 768px) {
+  .cat-subtitle {
+    font-size: 24px;
+  }
+
+  .body-bs-container {
+    margin-top: 3vh;
+  }
+
+  .button-container{
+    flex-direction: column;
+  }
+
+  .cat-button {
+    font-size: 80px;
+    padding: 12px 0;
+    width: 300px;
+    margin: 0 0;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    animation: none;
+    opacity: 0;
+  }
+
+  .decks-button {
+    animation: fadeIn linear 1.5s;
+    -webkit-animation: fadeIn linear 1.5s;
+    -moz-animation: fadeIn linear 1.5s;
+    -o-animation: fadeIn linear 1.5s;
+    -ms-animation: fadeIn linear 1.5s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  .trucks-button {
+    animation: fadeIn linear 1.5s;
+    -webkit-animation: fadeIn linear 1.5s;
+    -moz-animation: fadeIn linear 1.5s;
+    -o-animation: fadeIn linear 1.5s;
+    -ms-animation: fadeIn linear 1.5s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
+  }
+
+  .wheels-button {
+    animation: fadeIn linear 1.5s;
+    -webkit-animation: fadeIn linear 1.5s;
+    -moz-animation: fadeIn linear 1.5s;
+    -o-animation: fadeIn linear 1.5s;
+    -ms-animation: fadeIn linear 1.5s;
+    animation-delay: 0.9s;
+    animation-fill-mode: forwards;
+  }
+}
+
+/* Media Query for Short screens */
+
+@media (max-height: 820px) {
+  .body-bs-container {
+    margin-top: 1vh;
+  }
+}
+
+@media (max-height: 768px) {
+  .tw-button {
+    padding: 12px 0;
+  } 
+  .decks-button {
+    padding: 96px 0;
+  }
+}
+
+/* Media Query Mobile (sm) */
+
+@media (max-width: 576px) { 
+  .cat-title {
+    font-size: 40px;
+  }
+
+  .cat-subtitle {
+    font-size: 16px;
+  }
+
+  .cat-button {
+    font-size: 60px;
+  }
+
+  .body-bs-container {
+    margin-top: 0;
+  }
+
+  .button-container{
+    padding-right: 0;
+    margin-top: 2vh;
+    background-color: #f7f7f8;
+  }
+
+  .buttons-right {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .categories-footer {
+    height: 100%;
+    padding-top: 10%;
+  }
+
+  /* Small Height / Mobile */
+
+  @media (max-height: 700px) {
+    .cat-image {
+      height: 15vh;
+    }
+    .cat-button {
+      font-size: 50px;
+      padding: 3px 0;
+      width: 300px;
+      margin: 0 0;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+  }
+
+  /* X-Small Height / Mobile */
+
+  @media (max-height: 600px) {
+    .cat-title {
+      font-size: 30px;
+    }
+    .cat-subtitle {
+      font-size: 13px;
+    }
+    .cat-image {
+      height: 5vh;
+    }
+  }
+}
+
+/* End Media Queries */
+
+/* Animation Keyframes */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 300%;
+  }
+  to {
+    margin-top: 0%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 400%;
+  }
+
+  to {
+    margin-left: 10px;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    margin-right: 160%;
+  }
+
+  to {
+    margin-right: 10px;
+  }
 }

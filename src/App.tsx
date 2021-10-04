@@ -7,6 +7,7 @@ import './bootstrap.css';
 // Context
 import { IItem } from './context/types';
 import { CartContextProvider, cartReducer, initialCartState } from './context/Context';
+import { UIContextProvider, uiReducer, initialUIState } from './context/UIContext';
 // components
 import Start from './components/Start'
 import Categories from './components/Categories';
@@ -29,14 +30,12 @@ import PrivateRoute from './utils/PrivateRoute';
 export interface IApplicationProps { }
 
 const App: React.FC<IApplicationProps> = props => {
-  const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState)
+  const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
+  const [uiState, uiDispatch] = useReducer(uiReducer, initialUIState);
   const [deckComplete, setDeckComplete] = useState(false);
 
-  const cartContextValues = {
-    cartState,
-    cartDispatch,
-    deckComplete
-  }
+  const cartContextValues = { cartState, cartDispatch };
+  const uiContextValues = { uiState, uiDispatch };
 
   const cartItems = cartState.cartItems;
 
@@ -58,22 +57,24 @@ const App: React.FC<IApplicationProps> = props => {
 
   return (
     <CartContextProvider value={cartContextValues}>
-      <Account>
-        <BrowserRouter>
-          <div className='App'>
-            {/* <NavbarComponent /> */}
-            {/* <Status /> */}
-            <Route exact path='/' component={Start} />
-            <Route path='/categories' component={Categories} />
-            <Route path='/items' component={Items} />
-            <Route path='/cart' component={Cart} />
-            <Route path='/register' component={RegisterForm} />
-            <Route path='/verify' component={VerificationForm} />
-            <Route path='/login' component={LoginForm} />
-            <PrivateRoute path='/boardlist' component={BoardList} />
-          </div>
-        </BrowserRouter>
-      </Account>
+      <UIContextProvider value={uiContextValues}>
+        <Account>
+          <BrowserRouter>
+            <div className='App'>
+              {/* <NavbarComponent /> */}
+              {/* <Status /> */}
+              <Route exact path='/' component={Start} />
+              <Route path='/categories' component={Categories} />
+              <Route path='/items' component={Items} />
+              <Route path='/cart' component={Cart} />
+              <Route path='/register' component={RegisterForm} />
+              <Route path='/verify' component={VerificationForm} />
+              <Route path='/login' component={LoginForm} />
+              <PrivateRoute path='/boardlist' component={BoardList} />
+            </div>
+          </BrowserRouter>
+        </Account>
+      </UIContextProvider>
     </CartContextProvider>
   );
 }

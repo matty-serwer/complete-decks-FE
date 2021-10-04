@@ -34,3 +34,15 @@
   border-color: #52E3BF;
 }
 
+/* Media Query Mobile (sm) */
+
+@media (max-width: 576px) { 
+  .title {
+    padding-top: 15vh;
+    padding-bottom: 10vh;
+  }
+  .start-button{
+    font-size: 80px !important;
+  } 
+}
+

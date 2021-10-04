@@ -1,23 +1,30 @@
 import React, { useState, useContext, Dispatch, SetStateAction } from 'react';
-import { Col, Row, Card, Button, Modal } from 'react-bootstrap';
+import { Col, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import CartContext from './../context/Context';
+import UIContext from '../context/UIContext';
 import { IItem } from './../context/types';
+// components
+import RemoveModal from '../modals/RemoveModal';
+import DescriptionModal from '../modals/DescriptionModal';
+import CategoryModal from '../modals/CategoryModal';
 
 import '../styles/Item.css'
-import { Item } from 'react-bootstrap/lib/Breadcrumb';
 
 interface IItemComponentProps {
   item: IItem;
-  setDrawerOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const ItemComponent: React.FC<IItemComponentProps> = (props) => {
-  const { item, setDrawerOpen } = props;
+  const { item } = props;
+
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
 
+  const uiContext = useContext(UIContext);
+
   const [showCatModal, setShowCatModal] = useState(false);
   const [showDescModal, setShowDescModal] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
 
   const addHandler = () => {
     let catInCart = cartItems.some((_item) => _item.category === item.category);
@@ -26,18 +33,8 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       setShowCatModal(true);
     } else {
       cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
-      setDrawerOpen(true);
+      uiContext.uiDispatch({ type: "SET_SHOW_DRAWER" });
     }
-  }
-
-  const swapHandler = () => {
-    const oldPart = cartItems.find((_item) => _item.category === item.category);
-    if (oldPart) {
-      cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: oldPart });
-    }
-    cartContext.cartDispatch({ type: "ADD_CART_ITEM", payload: item });
-    setShowCatModal(false);
-    setDrawerOpen(true);
   }
 
   return (
@@ -45,16 +42,20 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
       <Card className="card">
         <Card.Body className="card-body">
           <Card.Title className="card-title">{item.name}</Card.Title>
-          <Card.Img src={item.image_url} className="card-image" onClick={() => setShowDescModal(true)} />
+          <OverlayTrigger placement="right" overlay={
+            <Tooltip id={`tooltip-info`}>
+              Click for info.
+            </Tooltip>
+          }>
+            <Card.Img src={item.image_url} className="card-image" onClick={() => setShowDescModal(true)} />
+          </OverlayTrigger>
           <div className="card-bottom">
             <Card.Text className="price">
               ${item.price}
             </Card.Text>
             {cartItems.some((_item) => _item.productId === item.productId) ? (
               <Button className="remove-button shop-button" variant="outline-warning"
-                onClick={() => {
-                  cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
-                }}>
+                onClick={() => setShowRemoveModal(true)}>
                 Remove Part
               </Button>
             ) : (
@@ -64,55 +65,11 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
         </Card.Body>
       </Card>
 
-      {/* Category Modal */}
-      <Modal show={showCatModal} className="cat-modal" onHide={() => setShowCatModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Uh Oh!</Modal.Title>
-        </Modal.Header>
-        {item.category === "decks" ? (
-          <Modal.Body>It looks like you&apos;ve already selected a deck.</Modal.Body>
-        ) : (
-          <Modal.Body>It looks like you&apos;ve already selected {item.category}.</Modal.Body>
-        )}
-        <Modal.Footer>
-          <Button variant="outline-warning shop-button" onClick={() => swapHandler()}>
-            Swap It Out!
-          </Button>
-          <Button variant="outline-primary shop-button" onClick={() => setShowCatModal(false)}>
-            Go Back
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <CategoryModal setShowCatModal={setShowCatModal} showCatModal={showCatModal} item={item} />
 
-      {/* Description Modal */}
-      <Modal show={showDescModal} className="desc-modal" onHide={() => setShowDescModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title className="dm-name">{item.name}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card.Img src={item.image_url} className="dm-image" />
-          <Row className="dm-description">{item.description}</Row>
-        </Modal.Body>
-        <Modal.Footer className="dm-footer">
-          <Button className="shop-button" variant="outline-primary" onClick={() => setShowDescModal(false)}>Close</Button>
-          {cartItems.some((_item) => _item.productId === item.productId) ? (
-            <Button className="remove-button shop-button" variant="outline-warning"
-              onClick={() => {
-                cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })
-                setShowDescModal(false);
-              }}>
-              Remove Part
-            </Button>
-          ) : (
-            <Button className="add-button shop-button" variant="outline-primary" onClick={() => {
-              addHandler();
-              setShowDescModal(false);
-            }}>Add This Part</Button>
-          )}
-          <div className="dm-price">${item.price}</div>
-          
-        </Modal.Footer>
-      </Modal>
+      <DescriptionModal setShowDescModal={setShowDescModal} showDescModal={showDescModal} setShowCatModal={setShowCatModal} item={item} />
+
+      <RemoveModal setShowRemoveModal={setShowRemoveModal} showRemoveModal={showRemoveModal} item={item} />
     </Col >
   )
 }

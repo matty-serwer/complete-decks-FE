@@ -47,13 +47,11 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
 export interface ICartContextProps {
   cartState: ICartState;
   cartDispatch: React.Dispatch<ICartActions>;
-  deckComplete: boolean;
 }
 
 const CartContext = createContext<ICartContextProps>({
   cartState: initialCartState,
-  cartDispatch: () => { },
-  deckComplete: false,
+  cartDispatch: () => { }
 })
 
 export const CartContextConsumer = CartContext.Consumer;

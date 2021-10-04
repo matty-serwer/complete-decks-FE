@@ -22,6 +22,13 @@
   font-size: 25px;
 }
 
+.total {
+  font-size: 20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+  width: 173px;
+}
+
 .total-container {
   /* border: 1px solid blue; */
   display: flex;
@@ -30,32 +37,53 @@
   margin: 2.4vh 0;
 }
 
+.still-need {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .need-items {
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  margin-left: 3vw;
+  /* align-items: flex-start; */
+  width: 173px;
+  /* margin-left: 3vw; */
+  /* border-left: 1px solid blue; */
 }
 
 .cart-link {
   color: #4762E6;
+  font-size: 30px;
+  font-weight: 200;
+  text-align: left;
+  /* left: 20vw; */
+  padding-left: 10px;
+  border: 1px solid rgb(211, 211, 211);
+  border: 1px solid #4762E6;
+  /* border-radius: 3px; */
+  background-color: white;
+  width: 173px;
+  margin-bottom: 6px;
+}
+
+.chev-icon {
+  font-weight: ligher;
   font-size: 23px;
-  left: 20vw;
+  margin-bottom: 4px;
+  margin-right: 8px;
+  -webkit-text-stroke: 2px white;
 }
 
 .cart-link:hover {
   text-decoration: none;
   color: #52E3BF;
+  background-color: #4762E6;
 }
 
-.total {
-  font-size: 20px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid black;
-  width: 200px;
-}
-
-.button-container {
+.cart-button-container {
   /* border: 1px solid blue; */
   padding-top: 13px;
   display: flex;
@@ -68,4 +96,12 @@
 
 .no-parts {
   margin: 20vh 0;
+}
+
+/* Media Query Medium */
+
+@media (max-width: 768px) { 
+  .cart-items-container {
+    margin-bottom: 15vh;
+  }
 }

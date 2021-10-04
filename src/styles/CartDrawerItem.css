@@ -1,29 +1,94 @@
-.drawer-cart-card-image {
-  height: 80%;
-  /* max-height: 210px; */
-  max-height: 20vh;
-  object-fit: cover;
-  margin-top: 9px;
-  margin-bottom: 0px;
-  margin-left: 20px;
+.drawer-item {
+  width: 90%;
+  max-height: 200px;
+  margin: 5px 0;
+  margin-left: 5%;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 3px;
 }
 
-.drawer-cart-item-title {
+.di-image-container {
+  max-height: 150px;
+}
+
+.drawer-item-image {
+  max-width: 100%;
+  max-height: 90%;
+  margin-top: 3%;
+}
+
+.di-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.di-info-container h3 {
   font-size: 20px;
-  /* min-height: 65px; */
-  font-weight: 600;
-  min-height: 5.5vh;
 }
 
-.drawer-cart-item-price {
-  font-size: 18px;
-  /* margin: 15px 0px 33px; */
-  /* margin-top: 2vh; */
-  margin-bottom: 2.5vh; 
+.di-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.drawer-cart-card {
-  min-width: 100%;
-  /* margin: 4px; */
-  height: 20vh;
+.drawer-item-button {
+  width: 90px;
+}
+
+.di-button-text:after {
+  content: "Remove";
+}
+.di-button-text {
+  display: block;
+}
+
+@media (max-height: 700px) {
+  .di-image-container {
+    max-height: 100px;
+  }
+
+  .di-info-container {
+    margin-top: 5px;
+  }
+
+  .di-info-container h3 {
+    font-size: 16px;
+  }
+
+}
+
+
+/* Media Query Medium */
+
+@media (max-width: 768px) {
+  .drawer-item-image {
+    margin-top: 6%;
+  }
+}
+
+/* Media Query Mobil (sm) */
+
+@media (max-width: 576px) {
+  .drawer-item {
+    margin: 10px auto;
+  }
+
+  .di-info-container h3 {
+    font-size: 16px;
+  }
+
+  .drawer-item-button {
+    width: 45px;
+    margin-top: 20%;
+    margin-left: 20%;
+  }
+
+  .di-button-text:after {
+    content: "X";
+  }
+  .di-button-text {
+    display: block;
+  }
 }

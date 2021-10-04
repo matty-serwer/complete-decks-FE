@@ -5,6 +5,7 @@ import { PropagateLoader } from 'react-spinners';
 import { useQuery } from '../hooks'
 import { IItem } from '../context/types';
 import CartContext from '../context/Context';
+import UIContext from '../context/UIContext';
 import axios from 'axios';
 // components
 import ItemComponent from './Item';
@@ -15,8 +16,6 @@ import Loader from './Loader';
 //styles
 import '../styles/Items.css';
 
-import itemsData from '../data.json';
-
 interface IItemsProps { }
 
 const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2";
@@ -24,16 +23,21 @@ const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2
 const Items: React.FC<IItemsProps> = (props) => {
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
-  const deckComplete = cartContext.deckComplete;
+
+  const uiContext = useContext(UIContext);
+  const drawerOpen = uiContext.uiState.drawerOpen;
+  const deckStrikeClass = uiContext.uiState.deckStrikeClass;
+  const trucksStrikeClass = uiContext.uiState.trucksStrikeClass;
+  const wheelsStrikeClass = uiContext.uiState.wheelsStrikeClass;
 
   const [itemsList, setItemsList] = useState(new Array<IItem>());
   const [isLoading, setIsLoading] = useState(false);
   const [showCompModal, setShowCompModal] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  // const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const [deckStrikeClass, setDeckStrikeClass] = useState("");
-  const [trucksStrikeClass, settrucksStrikeClass] = useState("");
-  const [wheelsStrikeClass, setWheelsStrikeClass] = useState("");
+  // const [deckStrikeClass, setDeckStrikeClass] = useState("");
+  // const [trucksStrikeClass, setTrucksStrikeClass] = useState("");
+  // const [wheelsStrikeClass, setWheelsStrikeClass] = useState("");
 
   let history = useHistory();
 
@@ -54,13 +58,13 @@ const Items: React.FC<IItemsProps> = (props) => {
     let wheels = cartItems.some((_item) => _item.category === "wheels");
 
     if (deck) {
-      setDeckStrikeClass("strike-thru");
+      uiContext.uiDispatch({ type: "ADD_STRIKE_CLASS", payload: "decks" });
     }
     if (trucks) {
-      settrucksStrikeClass("strike-thru");
+      uiContext.uiDispatch({ type: "ADD_STRIKE_CLASS", payload: "trucks" });
     }
     if (wheels) {
-      setWheelsStrikeClass("strike-thru");
+      uiContext.uiDispatch({ type: "ADD_STRIKE_CLASS", payload: "wheels" });
     }
 
   }, [cartItems])
@@ -76,8 +80,8 @@ const Items: React.FC<IItemsProps> = (props) => {
   return (
     <div className="items">
       <NavbarComponent colorShift="light" />
-      <CartDrawer show={drawerOpen} setDrawerOpen={setDrawerOpen} />
-      {drawerOpen ? <Backdrop setDrawerOpen={setDrawerOpen} /> : null}
+      <CartDrawer show={drawerOpen} />
+      {drawerOpen ? <Backdrop /> : null}
       <Container>
         <div className="breadcrumb-container">
           <Breadcrumb className="cat-breadcrumb">
@@ -89,9 +93,9 @@ const Items: React.FC<IItemsProps> = (props) => {
           </Breadcrumb>
         </div>
         <Row>
-          {itemsList.length ? 
-            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} setDrawerOpen={setDrawerOpen} />))) : (
-              <Loader/>
+          {itemsList.length ?
+            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />))) : (
+              <Loader />
             )}
         </Row>
 
