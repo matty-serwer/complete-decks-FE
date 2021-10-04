@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import CartContext from '../context/Context';
 import { IItem } from '../context/types';
 // components
 import NavbarComponent from './Navbar';
+import RemoveModal from '../modals/RemoveModal';
 // styles
 import '../styles/CartItem.css';
 
@@ -15,22 +16,23 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
   const { item } = props;
   const cartContext = useContext(CartContext)
 
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+
   return (
     <>
-      <Card className="cart-card">
-        <Row className="cart-card-row">
-          <Col md={4}>
-            <Card.Img src={item.image_url} className="cart-card-image" />
-          </Col>
-          <Col md={8}>
-            <Card.Body>
-              <Card.Title className="cart-item-title">{item.name}</Card.Title>
-              <Card.Text className="cart-item-price">${item.price}</Card.Text>
-              <Button variant="outline-warning" className="shop-button" onClick={() => cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })}>Remove From Cart?</Button>
-            </Card.Body>
-          </Col>
-        </Row>
-      </Card>
+      <Row className="cart-item">
+        <Col xs={3} className="ci-image-container">
+          <img src={item.image_url} alt={item.name} className="cart-item-image" />
+        </Col>
+        <Col xs={6} className="ci-info-container">
+          <h3 className="cart-item-name">{item.name}</h3>
+          <h3 className="cart-item-price">{item.price}</h3>
+        </Col>
+        <Col xs={3} className="ci-button-container">
+          <Button variant="outline-warning" className="shop-button cart-item-button" onClick={() => setShowRemoveModal(true)}><span className="ci-button-text"></span></Button>
+        </Col>
+      </Row>
+      <RemoveModal setShowRemoveModal={setShowRemoveModal} showRemoveModal={showRemoveModal} item={item} />
     </>
   )
 }

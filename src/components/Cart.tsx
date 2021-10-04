@@ -4,6 +4,8 @@ import { Link , useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import CartContext from '../context/Context';
+// icons
+import { MdSkateboarding } from "react-icons/md";
 // components
 import NavbarComponent from './Navbar';
 import CartItem from './CartItem';
@@ -108,7 +110,7 @@ const Cart: React.FC<ICartProps> = props => {
             <p className="total"> Total: ${total}</p>
           </div>
           {cartItems.length === 3 ? (
-            <div className="button-container">
+            <div className="cart-button-container">
               <Button variant="outline-primary" className="reg-button shop-button" onClick={handleSaveBoard}>Save Board</Button>
               <Button variant="outline-primary" className="reg-button shop-button">Checkout</Button>
             </div>
@@ -123,17 +125,17 @@ const Cart: React.FC<ICartProps> = props => {
             )}
             <div className="need-items">
               {!deckInCart ? (
-                <Link to='/items?category=decks' className="cart-link">a deck &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=decks' className="cart-link"><MdSkateboarding className="chev-icon" /> a deck </Link>
               ) : (
                 null
               )}
               {!trucksInCart ? (
-                <Link to='/items?category=trucks' className="cart-link">trucks &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=trucks' className="cart-link"><MdSkateboarding className="chev-icon" /> trucks </Link>
               ) : (
                 null
               )}
               {!wheelsInCart ? (
-                <Link to='/items?category=wheels' className="cart-link">wheels &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=wheels' className="cart-link"><MdSkateboarding className="chev-icon" /> wheels </Link>
               ) : (
                 null
               )}

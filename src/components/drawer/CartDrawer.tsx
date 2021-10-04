@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Container, Row } from 'react-bootstrap';
 import CartContext from '../../context/Context';
 import UIContext from '../../context/UIContext';
+// icons
+import { MdSkateboarding } from "react-icons/md";
 // components 
 import CartDrawerItem from './CartDrawerItem';
 // styles
@@ -35,7 +37,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
 
   const handleGoToCart = () => {
     history.push('/cart');
-    setDrawerOpen(false);
+    uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" });
   }
 
   useEffect(() => {
@@ -79,19 +81,19 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
             ) : (
               null
             )}
-            <div className="need-items-drawer">
+            <div className="need-items">
               {!deckInCart ? (
-                <Link to='/items?category=decks' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>a deck &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=decks' className="cart-link" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}><MdSkateboarding className="chev-icon" /> a deck</Link>
               ) : (
                 null
               )}
               {!trucksInCart ? (
-                <Link to='/items?category=trucks' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>trucks &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=trucks' className="cart-link" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}><MdSkateboarding className="chev-icon" /> trucks</Link>
               ) : (
                 null
               )}
               {!wheelsInCart ? (
-                <Link to='/items?category=wheels' className="cart-link-drawer" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}>wheels &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to='/items?category=wheels' className="cart-link" onClick={() => uiContext.uiDispatch({ type: "SET_HIDE_DRAWER" })}><MdSkateboarding className="chev-icon" /> wheels</Link>
               ) : (
                 null
               )}
