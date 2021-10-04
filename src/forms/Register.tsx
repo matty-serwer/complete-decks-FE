@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { Container, Form, Col, Row, Button, Modal } from 'react-bootstrap';
 // import { getEffectiveConstraintOfTypeParameter } from 'typescript';
 
-import UserPool from "./UserPool";
+import UserPool from "../context/UserPool";
 import AWS from 'aws-sdk'; // must be set up for verification.
 // components
 import NavbarComponent from '../components/Navbar';

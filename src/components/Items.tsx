@@ -13,6 +13,7 @@ import NavbarComponent from './Navbar';
 import CartDrawer from './drawer/CartDrawer';
 import Backdrop from './drawer/Backdrop';
 import Loader from './Loader';
+import ScrollButton from '../utils/ScrollButton';
 //styles
 import '../styles/Items.css';
 
@@ -98,22 +99,8 @@ const Items: React.FC<IItemsProps> = (props) => {
               <Loader />
             )}
         </Row>
-
-        {/* <Modal show={showCompModal} onHide={() => setShowCompModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Deck Complete!</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>You&apos;re deck is complete! Go check it out in the cart.</Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={() => handleToCart()}>
-              Go To Cart
-            </Button>
-            <Button variant="primary" onClick={() => setShowCompModal(false)}>
-              Go Back
-            </Button>
-          </Modal.Footer>
-        </Modal> */}
       </Container>
+      <ScrollButton />
     </div>
   )
 }

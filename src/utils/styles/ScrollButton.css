@@ -1,0 +1,35 @@
+.scroll-up-button {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  width: 100%;
+  /* left: 50%; */
+  bottom: 5px;
+  height: 48px;
+  font-size: 3rem;
+  z-index: 1;
+  /* border: 1px solid red; */
+}
+
+
+
+.scroll-up-icon {
+  margin-right: 20px;
+  color: #4762E6;
+  cursor: pointer;
+}
+
+.scroll-up-icon:hover {
+  color: #5BFCA6;
+}
+
+@media (max-width: 576px) {
+  .scroll-up-button {
+    font-size: 2rem;
+    height: 30px;
+  }
+
+  .scroll-up-icon {
+    margin-right: 5px;
+  }
+}
