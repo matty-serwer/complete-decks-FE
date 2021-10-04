@@ -34,3 +34,30 @@ input {
   text-decoration: none;
   color: #52E3BF;
 }
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+    margin: 3vh 0 2vh;
+  }
+  
+  .login-header {
+    margin-bottom: 4vh;
+  }
+
+  .register-header {
+    margin-top: 2vh;
+  }
+  
+  .login-form-link {
+    position: fixed;
+    bottom: 10px;
+    background-color:#f7f7f8;
+  }
+}
+
+@media (max-width: 576px) {
+  /* .form-link {
+    font-size: 14px;
+  } */
+}

@@ -45,8 +45,8 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
     <div className="user-form">
       <NavbarComponent colorShift='light'/>
       <Container className="user-container">
-        <h2>Log In</h2>
-        <Form onSubmit={handleSubmit}>
+        <h2 className="login-header">Log In</h2>
+        <Form onSubmit={handleSubmit} className="user-form-body">
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalUsername">
             <Form.Label column sm={3}>
               Username
@@ -72,7 +72,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
             </Col>
           </Form.Group>
           <div className="form-link-container">
-            <Link to='/register' className="form-link">Don&apos;t have an account? Click here to sign up!</Link>
+            <Link to='/register' className="form-link login-form-link">Don&apos;t have an account? Click here to sign up!</Link>
           </div>
         </Form>
       </Container>

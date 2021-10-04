@@ -86,7 +86,7 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
     <div className="user-form">
       <NavbarComponent colorShift="light" />
       <Container>
-        <h2>Sign up to save your boards!</h2>
+        <h2 className="register-header">Sign up to save your boards!</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={3}>
