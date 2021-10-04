@@ -47,7 +47,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
               Click for info.
             </Tooltip>
           }>
-            <Card.Img src={item.image_url} className="card-image" onClick={() => setShowDescModal(true)} />
+            <Card.Img src={item.image_url} alt={item.name} className="card-image" onClick={() => setShowDescModal(true)} />
           </OverlayTrigger>
           <div className="card-bottom">
             <Card.Text className="price">

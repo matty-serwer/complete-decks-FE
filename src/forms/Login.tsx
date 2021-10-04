@@ -47,7 +47,6 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
       <Container className="user-container">
         <h2>Log In</h2>
         <Form onSubmit={handleSubmit}>
-
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalUsername">
             <Form.Label column sm={3}>
               Username

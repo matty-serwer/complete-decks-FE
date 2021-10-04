@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
-import { Container, Row, Breadcrumb, Modal, Button } from 'react-bootstrap';
-import { PropagateLoader } from 'react-spinners';
+import React, { useEffect, useState, useContext, ChangeEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Container, Row, Col, Breadcrumb, Form } from 'react-bootstrap';
 import { useQuery } from '../hooks'
 import { IItem } from '../context/types';
 import CartContext from '../context/Context';
 import UIContext from '../context/UIContext';
 import axios from 'axios';
+// icons 
+import { MdOutlineSearch } from 'react-icons/md';
 // components
 import ItemComponent from './Item';
 import NavbarComponent from './Navbar';
@@ -32,13 +33,9 @@ const Items: React.FC<IItemsProps> = (props) => {
   const wheelsStrikeClass = uiContext.uiState.wheelsStrikeClass;
 
   const [itemsList, setItemsList] = useState(new Array<IItem>());
-  const [isLoading, setIsLoading] = useState(false);
-  const [showCompModal, setShowCompModal] = useState(false);
-  // const [drawerOpen, setDrawerOpen] = useState(false);
-
-  // const [deckStrikeClass, setDeckStrikeClass] = useState("");
-  // const [trucksStrikeClass, setTrucksStrikeClass] = useState("");
-  // const [wheelsStrikeClass, setWheelsStrikeClass] = useState("");
+  const [printItemsList, setPrintItemsList] = useState(new Array<IItem>());
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   let history = useHistory();
 
@@ -46,7 +43,7 @@ const Items: React.FC<IItemsProps> = (props) => {
     axios
       .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2/products`)
       .then(response => {
-        setItemsList(response.data.products)
+        setItemsList(response.data.products);
       })
       .catch(error => {
         console.log(error)
@@ -70,10 +67,13 @@ const Items: React.FC<IItemsProps> = (props) => {
 
   }, [cartItems])
 
-  // const handleToCart = () => {
-  //   setShowCompModal(false);
-  //   history.push('/cart');
-  // }
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+    if (searchTerm) {
+      setItemsList
+    }
+
+  }
 
   let query = useQuery();
   const category = query.get("category");
@@ -85,6 +85,7 @@ const Items: React.FC<IItemsProps> = (props) => {
       {drawerOpen ? <Backdrop /> : null}
       <Container>
         <div className="breadcrumb-container">
+          <div className="space" />
           <Breadcrumb className="cat-breadcrumb">
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=decks" }} active={category === "decks"} className={deckStrikeClass}>Decks</Breadcrumb.Item>
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=trucks" }} active={category === "trucks"} className={trucksStrikeClass}>
@@ -92,12 +93,50 @@ const Items: React.FC<IItemsProps> = (props) => {
             </Breadcrumb.Item>
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/items?category=wheels" }} active={category === "wheels"} className={wheelsStrikeClass}>Wheels</Breadcrumb.Item>
           </Breadcrumb>
+          <div className="search-icon-container">
+            <MdOutlineSearch className="search-icon" onClick={() => setShowSearch(!showSearch)} />
+          </div>
         </div>
-        <Row>
-          {itemsList.length ?
+        {showSearch ? (
+          <div className="search-container">
+            <Form>
+              <Form.Group as={Row} controlId="formSearchBar" className="form-group-search">
+                <Form.Label column sm="1" className="search-form-label">
+                  <MdOutlineSearch className="search-label-icon" />
+                </Form.Label>
+                <Col xs="12" sm="11">
+                  <Form.Control type="text" placeholder="Search..." onChange={(e) => setSearchTerm(e.target.value)} />
+                </Col>
+              </Form.Group>
+            </Form>
+          </div>
+        ) : (
+          null
+        )}
+
+        <Row className="items-list-conainer">
+          {/* {itemsList.length ?
             (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />))) : (
               <Loader />
+            )} */}
+          {itemsList.length ?
+            [
+              (searchTerm.length ?
+                itemsList.filter(item => item.category === category && item.name.toLowerCase().includes(searchTerm.toLowerCase())).map(_item => (<ItemComponent key={_item.productId} item={_item} />)
+                ) : (
+                  itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />))
+                )
+              )
+            ] : (
+              <Loader />
             )}
+          {itemsList.length && searchTerm.length && itemsList.filter(item => item.category === category && item.name.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 ? (
+            <div className="empty-search">
+              <h3>No Matches.</h3>  
+            </div>
+          ) : (
+            null
+          )}
         </Row>
       </Container>
       <ScrollButton />
