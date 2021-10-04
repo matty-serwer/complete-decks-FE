@@ -2,7 +2,7 @@ import React, { useState, useContext, SyntheticEvent } from 'react';
 import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import UserPool from './UserPool';
+import UserPool from '../context/UserPool';
 // components 
 import NavbarComponent from '../components/Navbar';
 // context

@@ -1,7 +1,7 @@
 import React, { useState, useContext, SyntheticEvent, useEffect } from 'react';
 import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import UserPool from './UserPool';
+import UserPool from '../context/UserPool';
 
 import { AccountContext } from '../context/Account';
 
