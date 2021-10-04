@@ -51,6 +51,7 @@ const Account: React.FC = ({ children }) => {
       user.signOut();
     }
   }
+  
   return (
     <AccountContext.Provider value={{ authenticate, getSession, logout }}>
       { children }

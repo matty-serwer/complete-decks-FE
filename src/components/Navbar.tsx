@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import CartContext from '../context/Context';
 // styles
 import '../styles/Navbar.css';
+// components 
+import LogoutModal from '../modals/LogoutModal';
 
 interface INavbarProps {
   colorShift?: string
@@ -16,6 +17,7 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
   }
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("idToken")) {
@@ -24,8 +26,6 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
       setLoggedIn(false);
     }
   }, [])
-
-  const cartContext = useContext(CartContext);
 
   return (
     <>
@@ -53,10 +53,19 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
                   as={Link}
                   to='/register'>Sign Up!</Nav.Link>
               )}
+              {loggedIn ? (
+                <>
+                  <span className={colorShift === "light" ? "nav-slash-l" : "nav-slash"}>/</span>
+                  <span className={colorShift === "light" ? "navbar-link-l navbar-link nav-link" : "navbar-link nav-link"} onClick={() => setShowLogoutModal(true)}>Logout</span>
+                </>
+              ) : (
+                null
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <LogoutModal setShowLogoutModal={setShowLogoutModal} showLogoutModal={showLogoutModal} />
     </>
   )
 
