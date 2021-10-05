@@ -41,7 +41,8 @@
   font-weight: 800;
 }
 
-#basic-navbar-nav {
+.basic-navbar-nav {
+  display: flex;
   justify-content: end;
 }
 

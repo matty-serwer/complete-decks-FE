@@ -33,7 +33,7 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
         <Container>
           <Navbar.Brand as={Link} to="/" className={colorShift === "light" ? "navbar-brand-l navbar-brand" : "navbar-brand"}>Complete Decks</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav" className="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link
                 className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"}
