@@ -28,7 +28,8 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
   const uiContext = useContext(UIContext);
   const drawerOpen = uiContext.uiState.drawerOpen;
 
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState("");
+  // const [fixedTotal, setFixedTotal] = useState("");
   const [deckInCart, setDeckInCart] = useState(false);
   const [trucksInCart, settrucksInCart] = useState(false);
   const [wheelsInCart, setWheelsInCart] = useState(false);
@@ -41,9 +42,8 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
   }
 
   useEffect(() => {
-    setTotal(
-      cartItems.reduce((acc, _item) => acc + Number(_item.price), 0)
-    )
+    let initTotal = cartItems.reduce((acc, _item) => acc + Number(_item.price), 0);
+    setTotal(initTotal.toFixed(2));
 
     let deck = cartItems.some((_item) => _item.category === "decks");
     let trucks = cartItems.some((_item) => _item.category === "trucks");

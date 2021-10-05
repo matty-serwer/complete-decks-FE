@@ -15,11 +15,12 @@
 
 .cart-header h1 {
   color: #4762E6;
+  
 }
 
 .cart-header h3 {
   color: #4762E6;
-  font-size: 25px;
+  font-size: 21px;
 }
 
 .total {
@@ -102,12 +103,16 @@
 
 @media (max-width: 768px) { 
   .cart-items-container {
-    margin-bottom: 15vh;
+    margin-bottom: 0vh;
   }
-  
+
+  .cart-header h3 {
+    font-size: 18px;
+  }
+
   @media (max-height: 650px) {
     .cart-items-container {
-      margin-bottom: 10vh;
+      margin-bottom: 0vh;
     }
   }
 
