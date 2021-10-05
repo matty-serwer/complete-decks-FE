@@ -77,7 +77,7 @@ const Board: React.FC<IBoardProps> = (props) => {
   return (
     <>
       <Card className="board-card">
-        <h3 className="board-header">Another Complete Deck!</h3>
+        <h3 className="board-header">{board.name}</h3>
         <Card.Body>
           <Row>
             {boardItems.length ? (

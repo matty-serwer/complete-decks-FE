@@ -10,6 +10,7 @@ import { MdSkateboarding } from "react-icons/md";
 import NavbarComponent from './Navbar';
 import CartItem from './CartItem';
 import LoginModal from '../modals/LoginModal';
+import SaveModal from '../modals/SaveModal';
 // utils
 import axiosWithAuth from '../utils/axiosWithAuth';
 // styles
@@ -28,6 +29,7 @@ const Cart: React.FC<ICartProps> = props => {
   const [wheelsInCart, setWheelsInCart] = useState(false);
 
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
 
   const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
 
@@ -48,46 +50,47 @@ const Cart: React.FC<ICartProps> = props => {
 
   const handleSaveBoard = (event: SyntheticEvent) => {
     event.preventDefault();
-    let deckId = "";
-    let trucksId = "";
-    let wheelsId = "";
-    let boardId = uuidv4();
-    const userId = localStorage.getItem('sub');
-    cartItems.forEach((_item) => {
-      if (_item.category === "decks") {
-        deckId = _item.productId.toString();
-      } else if (_item.category === "trucks") {
-        trucksId = _item.productId.toString();
-      } else if (_item.category === "wheels") {
-        wheelsId = _item.productId.toString();
-      }
-    })
+    // let deckId = "";
+    // let trucksId = "";
+    // let wheelsId = "";
+    // let boardId = uuidv4();
+    // const userId = localStorage.getItem('sub');
+    // cartItems.forEach((_item) => {
+    //   if (_item.category === "decks") {
+    //     deckId = _item.productId.toString();
+    //   } else if (_item.category === "trucks") {
+    //     trucksId = _item.productId.toString();
+    //   } else if (_item.category === "wheels") {
+    //     wheelsId = _item.productId.toString();
+    //   }
+    // })
 
+    // if (localStorage.getItem('idToken')) {
+    //   let idToken = localStorage.getItem('idToken');
+    //   axios
+    //     .post(`${BACKEND_URL}/board`, {
+    //       "boardId": boardId,
+    //       "userId": userId,
+    //       "deckId": deckId,
+    //       "trucksId": trucksId,
+    //       "wheelsId": wheelsId
+    //     }, {
+    //       headers: {
+    //         "Authorization": idToken,
+    //       }
+    //     })
+    //     .then((response: any) => {
+    //       console.log(response);
+    //       push('/boardlist');
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     })
     if (localStorage.getItem('idToken')) {
-      let idToken = localStorage.getItem('idToken');
-      axios
-        .post(`${BACKEND_URL}/board`, {
-          "boardId": boardId,
-          "userId": userId,
-          "deckId": deckId,
-          "trucksId": trucksId,
-          "wheelsId": wheelsId
-        }, {
-          headers: {
-            "Authorization": idToken,
-          }
-        })
-        .then((response: any) => {
-          console.log(response);
-          push('/boardlist');
-        })
-        .catch((error) => {
-          console.error(error);
-        })
+      setShowSaveModal(true);
     } else {
       setShowLoginModal(true);
     }
-
   }
 
   return (
@@ -147,6 +150,7 @@ const Cart: React.FC<ICartProps> = props => {
           </div>
         </div>
         <LoginModal setShowLoginModal={setShowLoginModal} showLoginModal={showLoginModal} />
+        <SaveModal setShowSaveModal={setShowSaveModal} showSaveModal={showSaveModal} />
       </Container>
     </>
   )

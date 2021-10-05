@@ -2,8 +2,8 @@ import { createContext } from 'react';
 import { IItem } from './types';
 
 export interface ICartActions {
-  type: 'ADD_CART_ITEM' | 'REMOVE_CART_ITEM';
-  payload: IItem;
+  type: 'ADD_CART_ITEM' | 'REMOVE_CART_ITEM' | 'CLEAR_CART';
+  payload?: IItem;
 }
 
 export interface ICartState {
@@ -39,6 +39,10 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
       const updatedCartItems = cartItems.filter((_item) => _item.productId !== oldItem.productId)
 
       return { ...state, cartItems: updatedCartItems };
+
+    case 'CLEAR_CART':
+      return { ...state, cartItems: [] };
+
     default:
       return state;
   }

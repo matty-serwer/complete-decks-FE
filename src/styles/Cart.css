@@ -102,7 +102,16 @@
 /* Login Modal */
 
 .login-modal {
-  font-family: "Mulish", sans-serif
+  font-family: "Mulish", sans-serif;
+}
+
+/* Save Modal */
+.save-modal {
+  font-family: "Mulish", sans-serif;
+}
+
+.save-body p {
+  /* text-align: center; */
 }
 
 /* Media Query Medium */

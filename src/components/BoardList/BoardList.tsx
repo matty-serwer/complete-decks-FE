@@ -12,6 +12,7 @@ export interface IBoardListProps { }
 
 export interface IBoard {
   boardId: string;
+  name: string;
   userId: string;
   deckId: string;
   trucksId: string;
@@ -22,7 +23,7 @@ export interface IBoard {
 
 const BoardList: React.FC<IBoardListProps> = () => {
   // const [boardList, setBoardList] = useState<IBoard[]>([]);
-  const [boardList, setBoardList] = useState([]);
+  const [boardList, setBoardList] = useState(new Array<IBoard>());
   const [userId, setUserId] = useState("");
   const [boardDeleted, setBoardDeleted] = useState(false);
 
@@ -46,7 +47,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
         // console.log(response);
         const boards = response.data.boards;
         setBoardList(boards);
-        console.log(boardList);
+        // console.log(boardList);
         
       })
       .catch((error) => {
