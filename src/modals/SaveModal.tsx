@@ -1,8 +1,10 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
+import React, { Dispatch, SetStateAction, useContext, useState, ChangeEvent } from 'react'
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import * as yup from "yup";
+import saveBoardScheme from '../validation/saveBoardScheme';
 // context
 import CartContext from './../context/Context';
 
@@ -11,10 +13,17 @@ interface ISaveModalProps {
   showSaveModal: boolean;
 }
 
+const initialFormErrors = {
+  name: "",
+  email: "",
+  password: "",
+};
+
 const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const { setShowSaveModal, showSaveModal } = props;
 
   const [boardName, setBoardName] = useState("");
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
   const { push } = useHistory();
@@ -64,6 +73,23 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
     }
   }
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked, type } = e.target;
+    const correctValue = type === "checkbox" ? checked : value;
+
+    yup
+      .reach(saveBoardScheme, name)
+      .validate(correctValue)
+      .then(() => {
+        setFormErrors({ ...formErrors, [name]: "" });
+      })
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] });
+      });
+
+    setBoardName(e.target.value);
+  };
+
   return (
     <Modal show={showSaveModal} className="save-modal" onHide={() => setShowSaveModal(false)}>
       <Modal.Header closeButton>
@@ -77,10 +103,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
               Name 
             </Form.Label>
             <Col xs="12" sm="10">
-              <Form.Control type="text" placeholder="Enter a name for this board" onChange={(e) => setBoardName(e.target.value)} />
+              <Form.Control type="text" placeholder="Enter a name for this board" name="name" onChange={handleChange} />
             </Col>
           </Form.Group>
         </Form>
+        <div className="form-errors">{formErrors.name}</div>
       </Modal.Body>
       <Modal.Footer className="save-footer">
         <Button className="shop-button" variant="outline-primary" onClick={handleSaveBoard}>Save</Button>

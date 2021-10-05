@@ -17,6 +17,8 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loginError, setLoginError] = useState("")
+
   const { authenticate } = useContext(AccountContext);
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
@@ -44,6 +46,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
       })
       .catch(err => {
         console.error("Failed to login", err);
+        setLoginError(err.message);
       })
 
   }
@@ -72,7 +75,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
               <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             </Col>
           </Form.Group>
-
+          <div className="form-errors">{loginError}</div>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
               <Button type="submit" className="shop-button signup-button" variant="outline-primary">Login</Button>
