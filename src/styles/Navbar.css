@@ -42,9 +42,15 @@
 }
 
 .basic-navbar-nav {
+  /* display: flex; */
+  justify-content: space-between !important;
+}
+
+/* .navbar {
   display: flex;
   justify-content: flex-end;
-}
+  min-width: 100vw;
+} */
 
 .navbar-toggler-icon {
   color: black !important;
@@ -68,5 +74,9 @@
   .navbar-link {
     font-size: 20px !important;
     color: rgb(116, 116, 116) !important;
+  }
+  .basic-navbar-nav {
+    /* display: flex; */
+    justify-content: center !important;
   }
 }

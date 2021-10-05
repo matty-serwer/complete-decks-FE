@@ -1,9 +1,9 @@
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, ChangeEvent } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { Container, Form, Col, Row, Button, Modal } from 'react-bootstrap';
-// import { getEffectiveConstraintOfTypeParameter } from 'typescript';
-
+import * as yup from "yup";
+import registerScheme from '../validation/registerScheme';
 import UserPool from "../context/UserPool";
 import AWS from 'aws-sdk'; // must be set up for verification.
 // components
@@ -13,13 +13,32 @@ import './styles/forms.css';
 
 interface IRegisterFormProps { }
 
+const initialFormValues = {
+  email: "",
+  username: "",
+  password: "",
+  givenName: "",
+  familyName: ""
+};
+
+const initialFormErrors = {
+  email: "",
+  username: "",
+  password: "",
+  givenName: "",
+  familyName: ""
+};
+
 const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [givenName, setGivenName] = useState("");
-  const [familyName, setFamilyName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [givenName, setGivenName] = useState("");
+  // const [familyName, setFamilyName] = useState("");
   const [error, setError] = useState("");
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   const [clientId, setClientId] = useState("");
   const [confirmationCode, setConfirmationCode] = useState("");
@@ -37,19 +56,19 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
     const attributeList = [
       new CognitoUserAttribute({
         Name: 'given_name',
-        Value: givenName
+        Value: formValues.givenName
       }),
       new CognitoUserAttribute({
         Name: 'family_name',
-        Value: familyName
+        Value: formValues.familyName
       }),
       new CognitoUserAttribute({
         Name: 'email',
-        Value: email
+        Value: formValues.email
       })
     ]
 
-    UserPool.signUp(username, password, attributeList, null, (err, data) => {
+    UserPool.signUp(formValues.username, formValues.password, attributeList, null, (err, data) => {
       if (err) {
         console.error(err);
         setError(err.message);
@@ -60,15 +79,30 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
         setShowConfModal(true);
       }
     })
-
   }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked, type } = event.target;
+    const correctValue = type === "checkbox" ? checked : value;
+
+    yup
+      .reach(registerScheme, name)
+      .validate(correctValue)
+      .then(() => {
+        setFormErrors({ ...formErrors, [name]: "" });
+      })
+      .catch((error) => {
+        setFormErrors({ ...formErrors, [name]: error.errors[0] });
+      });
+    setFormValues({ ...formValues, [name]: correctValue });
+  };
 
   const handleConfirm = (event: SyntheticEvent) => {
     event.preventDefault();
     var params = {
       ClientId: clientId,
       ConfirmationCode: confirmationCode,
-      Username: username
+      Username: formValues.username
     }
     cIDProvider.confirmSignUp(params, (err, data) => {
       if (err) {
@@ -93,16 +127,19 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
               Email
             </Form.Label>
             <Col sm={8}>
-              <Form.Control type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+              <Form.Control type="email" name="email" placeholder="Email" onChange={handleChange} />
+              <div className='form-error'>{formErrors.email}</div>
             </Col>
           </Form.Group>
+
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalUsername">
             <Form.Label column sm={3}>
               Username
             </Form.Label>
             <Col sm={8}>
-              <Form.Control type="text" placeholder="Choose a Username" onChange={(e) => setUsername(e.target.value)} />
+              <Form.Control type="text" name="username" placeholder="Choose a Username" onChange={handleChange} />
+              <div className='form-error'>{formErrors.username}</div>
             </Col>
           </Form.Group>
 
@@ -112,7 +149,8 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
               Password
             </Form.Label>
             <Col sm={8}>
-              <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+              <Form.Control type="password" name="password" placeholder="Password" onChange={handleChange} />
+              <div className='form-error'>{formErrors.password}</div>
             </Col>
           </Form.Group>
 
@@ -121,7 +159,8 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
               First Name
             </Form.Label>
             <Col sm={8}>
-              <Form.Control type="text" placeholder="First Name" onChange={(e) => setGivenName(e.target.value)} />
+              <Form.Control type="text" name="givenName" placeholder="First Name" onChange={handleChange} />
+              <div className='form-error'>{formErrors.givenName}</div>
             </Col>
           </Form.Group>
 
@@ -130,9 +169,15 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
               Last Name
             </Form.Label>
             <Col sm={8}>
-              <Form.Control type="text" placeholder="Last Name" onChange={(e) => setFamilyName(e.target.value)} />
+              <Form.Control type="text" name="familyName" placeholder="Last Name" onChange={handleChange} />
+              <div className='form-error'>{formErrors.familyName}</div>
             </Col>
           </Form.Group>
+          {error.length > 0 ? (
+          <p className="reg-error form-error">{error}</p>
+        ) : (
+          null
+        )}
 
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
@@ -143,18 +188,14 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
             <Link to='/login' className="form-link">Already have an account? Click here to login!</Link>
           </div>
         </Form>
-        {error.length > 0 ? (
-          <p className="reg-error">{error}</p>
-        ) : (
-          null
-        )}
+        
 
-        <Modal show={showConfModal} onHide={() => setShowConfModal(false)}>
+        <Modal show={showConfModal} className="conf-modal" onHide={() => setShowConfModal(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Please Verify Your Email</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            A verification code has been sent to your email. Please enter it below to complete your registration.
+            <div className="cm-text">A verification code has been sent to your email. Please enter it below to complete your registration.</div>
             <Form onSubmit={handleConfirm}>
               <Form.Group as={Row} className="mb-4" controlId="formHorizontalConfirm">
                 <Form.Label column>
@@ -164,20 +205,20 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
                   <Form.Control type="text" placeholder="#######" onChange={(e) => setConfirmationCode(e.target.value)} />
                 </Col>
               </Form.Group>
-
               <Form.Group as={Row} className="mb-3">
-                <Col>
-                  <Button variant="outline-primary" type="submit" className="shop-button">
+                <div className="cm-button-container">
+                  <Button variant="outline-primary" type="submit" className="shop-button cm-button">
                     Enter
                   </Button>
-                </Col>
+                </div>
+
               </Form.Group>
             </Form>
-            {confError.length > 0 ? (
-              <p className="conf-error">{confError}</p>
+            {/* {confError.length > 0 ? (
+              <p className="conf-error">{confError.message}</p>
             ) : (
               null
-            )}
+            )} */}
           </Modal.Body>
         </Modal>
       </Container >

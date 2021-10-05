@@ -14,6 +14,7 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
   let colorShift = "dark"
   if (props.colorShift) {
     colorShift = props.colorShift;
+    colorShift.concat(" justify-content-between")
   }
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,12 +30,15 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
 
   return (
     <>
-      <Navbar variant="dark" expand="md" className={colorShift}>
-        <Container>
+    <Navbar collapseOnSelect variant="dark" expand="md" className={colorShift}>
+   
+        
+
           <Navbar.Brand as={Link} to="/" className={colorShift === "light" ? "navbar-brand-l navbar-brand" : "navbar-brand"}>Complete Decks</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="basic-navbar-nav justify-content-end">
-            <Nav className="me-auto">
+          <Navbar.Toggle aria-controls="responsive-navebar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="basic-navbar-nav">
+            <Nav />
+            <Nav>
               <Nav.Link
                 className={colorShift === "light" ? "navbar-link-l navbar-link" : "navbar-link"}
                 as={Link}
@@ -63,7 +67,9 @@ const NavbarComponent: React.FC<INavbarProps> = props => {
               )}
             </Nav>
           </Navbar.Collapse>
-        </Container>
+
+        
+
       </Navbar>
       <LogoutModal setShowLogoutModal={setShowLogoutModal} showLogoutModal={showLogoutModal} />
     </>

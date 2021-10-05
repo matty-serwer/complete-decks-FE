@@ -10,5 +10,14 @@ export default yup.object().shape({
     .required("A username is required."),
   password: yup
     .string()
+    .required()
     .min(10, "Password must be at least 10 characters.")
+    .matches(/.*[0-9].*/, "Password must contain at least one number.")
+    .matches(/(?=.*[!@#\$%\^&\*])/, "Password must contain one special character."),
+  givenName: yup
+    .string()
+    .required("Please enter your first Name"),
+  familyName: yup
+    .string()
+    .required("Please enter your first Name"),
 })

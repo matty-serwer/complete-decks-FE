@@ -35,6 +35,29 @@ input {
   color: #52E3BF;
 }
 
+.conf-modal {
+  font-family: "Mulish", sans-serif;
+}
+
+.cm-text {
+  margin-bottom: 40px;
+}
+
+.cm-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cm-button {
+  margin-right: 10px;
+}
+
+.form-error {
+  color:rgb(141, 74, 141);
+}
+
 @media (max-width: 768px) {
   h2 {
     font-size: 24px;
