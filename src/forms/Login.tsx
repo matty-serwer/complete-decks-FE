@@ -7,6 +7,7 @@ import UserPool from '../context/UserPool';
 import NavbarComponent from '../components/Navbar';
 // context
 import { AccountContext } from '../context/Account';
+import CartContext from '../context/Context';
 // styles
 import './styles/forms.css';
 
@@ -17,6 +18,8 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
   const [password, setPassword] = useState("");
 
   const { authenticate } = useContext(AccountContext);
+  const cartContext = useContext(CartContext);
+  const cartItems = cartContext.cartState.cartItems;
 
   const history = useHistory();
 
@@ -33,7 +36,11 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
         localStorage.setItem('idToken', idToken);
         localStorage.setItem('sub', sub);
         localStorage.setItem('firstName', firstName);
-        history.push('/categories');
+        if (cartItems.length > 0) {
+          history.push('/cart')
+        } else {
+          history.push('/categories');
+        }
       })
       .catch(err => {
         console.error("Failed to login", err);

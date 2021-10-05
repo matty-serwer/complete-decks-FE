@@ -9,6 +9,7 @@ import { MdSkateboarding } from "react-icons/md";
 // components
 import NavbarComponent from './Navbar';
 import CartItem from './CartItem';
+import LoginModal from '../modals/LoginModal';
 // utils
 import axiosWithAuth from '../utils/axiosWithAuth';
 // styles
@@ -25,6 +26,8 @@ const Cart: React.FC<ICartProps> = props => {
   const [deckInCart, setDeckInCart] = useState(false);
   const [trucksInCart, settrucksInCart] = useState(false);
   const [wheelsInCart, setWheelsInCart] = useState(false);
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
 
@@ -82,7 +85,7 @@ const Cart: React.FC<ICartProps> = props => {
           console.error(error);
         })
     } else {
-      console.log("Please Login to proceed")
+      setShowLoginModal(true);
     }
 
   }
@@ -143,6 +146,7 @@ const Cart: React.FC<ICartProps> = props => {
             </div>
           </div>
         </div>
+        <LoginModal setShowLoginModal={setShowLoginModal} showLoginModal={showLoginModal} />
       </Container>
     </>
   )
