@@ -82,7 +82,7 @@
 
 @media (max-width: 576px) {
   .cart-item {
-    margin: 10px auto;
+    margin: 10px 10px;;
   }
 
   .ci-info-container h3 {

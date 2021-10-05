@@ -104,4 +104,16 @@
   .cart-items-container {
     margin-bottom: 15vh;
   }
+  
+  @media (max-height: 650px) {
+    .cart-items-container {
+      margin-bottom: 10vh;
+    }
+  }
+
+  @media (max-height: 600px) {
+    .cart-items-container {
+      margin-bottom: 2vh;
+    }
+  }
 }

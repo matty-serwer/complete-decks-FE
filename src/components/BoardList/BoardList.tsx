@@ -59,7 +59,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
       <NavbarComponent colorShift={"light"} />
       <Container>
         <h1 className="boardlist-header">My Board List</h1>
-        <div>
+        <div className="boardlist-container">
         {boardList.length ? (
           <div>
             {boardList.filter(_board => _board.userId === userId).map(filteredBoard => <Board key={filteredBoard.boardId} board={filteredBoard} setBoardDeleted={setBoardDeleted} boardDeleted={boardDeleted} />)}
