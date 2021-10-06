@@ -118,8 +118,8 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
 
   return (
     <div className="user-form">
-      <NavbarComponent colorShift="light" />
       <Container>
+        <NavbarComponent colorShift="light" />
         <h2 className="register-header">Sign up to save your boards!</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
@@ -174,10 +174,10 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
             </Col>
           </Form.Group>
           {error.length > 0 ? (
-          <p className="reg-error form-error">{error}</p>
-        ) : (
-          null
-        )}
+            <p className="reg-error form-error">{error}</p>
+          ) : (
+            null
+          )}
 
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
@@ -188,7 +188,7 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
             <Link to='/login' className="form-link">Already have an account? Click here to login!</Link>
           </div>
         </Form>
-        
+
 
         <Modal show={showConfModal} className="conf-modal" onHide={() => setShowConfModal(false)}>
           <Modal.Header closeButton>

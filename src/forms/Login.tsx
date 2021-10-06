@@ -53,8 +53,8 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
 
   return (
     <div className="user-form">
-      <NavbarComponent colorShift='light'/>
       <Container className="user-container">
+        <NavbarComponent colorShift='light' />
         <h2 className="login-header">Log In</h2>
         <Form onSubmit={handleSubmit} className="user-form-body">
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalUsername">
