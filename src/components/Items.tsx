@@ -80,10 +80,10 @@ const Items: React.FC<IItemsProps> = (props) => {
 
   return (
     <div className="items">
-      <NavbarComponent colorShift="light" />
-      <CartDrawer show={drawerOpen} />
-      {drawerOpen ? <Backdrop /> : null}
       <Container>
+        <NavbarComponent colorShift="light" />
+        <CartDrawer show={drawerOpen} />
+        {drawerOpen ? <Backdrop /> : null}
         <div className="breadcrumb-container">
           <div className="space" />
           <Breadcrumb className="cat-breadcrumb">
@@ -132,7 +132,7 @@ const Items: React.FC<IItemsProps> = (props) => {
             )}
           {itemsList.length && searchTerm.length && itemsList.filter(item => item.category === category && item.name.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 ? (
             <div className="empty-search">
-              <h3>No Matches.</h3>  
+              <h3>No Matches.</h3>
             </div>
           ) : (
             null

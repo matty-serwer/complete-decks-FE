@@ -31,7 +31,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
 
     authenticate(username, password)
       .then(data => {
-        console.log("Logged in!", data);
+        // console.log("Logged in!", data);
         const idToken = data.idToken.jwtToken;
         const sub = data.idToken.payload.sub;
         const firstName = data.idToken.payload.given_name;

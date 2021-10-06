@@ -45,7 +45,7 @@ const Board: React.FC<IBoardProps> = (props) => {
   }
 
   useEffect(() => {
-    console.log(board);
+    // console.log(board);
     fetchBoardItems();
   }, []);
 
@@ -62,10 +62,10 @@ const Board: React.FC<IBoardProps> = (props) => {
       }
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setBoardDeleted(!boardDeleted)
       })
       .catch((error) => {

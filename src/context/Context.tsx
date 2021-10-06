@@ -28,7 +28,7 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
       // return { ...state, cartItems: [...cartItems, newItem] }
       const isItemInCart = cartItems.find(_item => _item.productId === newItem.productId)
       if (isItemInCart) {
-        console.log(isItemInCart)
+        // console.log(isItemInCart)
         return state
       } else {
         return { ...state, cartItems: [...cartItems, newItem] }

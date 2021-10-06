@@ -33,7 +33,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
   useEffect(() => {
     let idToken = localStorage.getItem('idToken');
     let userSub = localStorage.getItem('sub');
-    if(userSub) {
+    if (userSub) {
       setUserId(userSub);
     }
 
@@ -48,7 +48,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
         const boards = response.data.boards;
         setBoardList(boards);
         // console.log(boardList);
-        
+
       })
       .catch((error) => {
         console.error(error);
@@ -57,17 +57,17 @@ const BoardList: React.FC<IBoardListProps> = () => {
 
   return (
     <div className="boardlist-component">
-      <NavbarComponent colorShift={"light"} />
       <Container>
+        <NavbarComponent colorShift={"light"} />
         <h1 className="boardlist-header">My Board List</h1>
         <div className="boardlist-container">
-        {boardList.length ? (
-          <div>
-            {boardList.filter(_board => _board.userId === userId).map(filteredBoard => <Board key={filteredBoard.boardId} board={filteredBoard} setBoardDeleted={setBoardDeleted} boardDeleted={boardDeleted} />)}
-          </div>
-        ) : (
-          <h3 className="empty-boardlist">You&apos;re Board List is empty.</h3>
-        )}
+          {boardList.length ? (
+            <div>
+              {boardList.filter(_board => _board.userId === userId).map(filteredBoard => <Board key={filteredBoard.boardId} board={filteredBoard} setBoardDeleted={setBoardDeleted} boardDeleted={boardDeleted} />)}
+            </div>
+          ) : (
+            <h3 className="empty-boardlist">You&apos;re Board List is empty.</h3>
+          )}
         </div>
       </Container>
     </div>

@@ -7,6 +7,7 @@ import * as yup from "yup";
 import saveBoardScheme from '../validation/saveBoardScheme';
 // context
 import CartContext from './../context/Context';
+import UIContext from './../context/UIContext';
 
 interface ISaveModalProps {
   setShowSaveModal: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +31,8 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
 
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.cartState.cartItems;
+
+  const uiContext = useContext(UIContext);
 
   const handleSaveBoard = () => {
     let deckId = "";
@@ -65,6 +68,9 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
         .then((response: any) => {
           // console.log(response);
           cartContext.cartDispatch({ type: "CLEAR_CART" });
+          uiContext.uiDispatch({ type: "REMOVE_STRIKE_CLASS", payload: "decks" });
+          uiContext.uiDispatch({ type: "REMOVE_STRIKE_CLASS", payload: "trucks" });
+          uiContext.uiDispatch({ type: "REMOVE_STRIKE_CLASS", payload: "wheels" });
           push('/boardlist');
         })
         .catch((error) => {

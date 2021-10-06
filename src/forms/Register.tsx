@@ -73,7 +73,7 @@ const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
         console.error(err);
         setError(err.message);
       } else {
-        console.log(data);
+        // console.log(data);
         setClientId(data?.user.pool.clientId);
         setError("");
         setShowConfModal(true);

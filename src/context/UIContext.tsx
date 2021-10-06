@@ -28,15 +28,15 @@ export const uiReducer = (state: IUIState, action: IUIActions) => {
 
     case 'ADD_STRIKE_CLASS':
       if (action.payload === 'decks') {
-        console.log('decks in reducer')
+        // console.log('decks in reducer')
         return { ...state, deckStrikeClass: "strike-thru" }
       }
       if (action.payload === 'trucks') {
-        console.log('trucks in reducer')
+        // console.log('trucks in reducer')
         return { ...state, trucksStrikeClass: "strike-thru" }
       }
       if (action.payload === 'wheels') {
-        console.log('wheels in reducer')
+        // console.log('wheels in reducer')
         return { ...state, wheelsStrikeClass: "strike-thru" }
       } else {
         console.log("incorrect payload");
@@ -45,15 +45,15 @@ export const uiReducer = (state: IUIState, action: IUIActions) => {
 
     case 'REMOVE_STRIKE_CLASS':
       if (action.payload === 'decks') {
-        console.log('decks in reducer')
+        // console.log('decks in reducer')
         return { ...state, deckStrikeClass: "" }
       }
       if (action.payload === 'trucks') {
-        console.log('trucks in reducer')
+        // console.log('trucks in reducer')
         return { ...state, trucksStrikeClass: "" }
       }
       if (action.payload === 'wheels') {
-        console.log('wheels in reducer')
+        // console.log('wheels in reducer')
         return { ...state, wheelsStrikeClass: "" }
       } else {
         console.log("incorrect payload");

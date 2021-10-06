@@ -49,7 +49,7 @@ const App: React.FC<IApplicationProps> = props => {
     } else {
       setDeckComplete(false);
     }
-    console.log(deckComplete);
+    // console.log(deckComplete);
 
   }, [cartItems])
 

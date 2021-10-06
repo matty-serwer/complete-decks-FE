@@ -13,14 +13,16 @@ function Start() {
 
   return (
     <div className="categories">
-      <NavbarComponent colorShift='light' />
+      <Container>
+        <NavbarComponent colorShift='light' />
+      </Container>
       <div className="cat-header">
-      <h1 className="cat-title">Board Components</h1>
-      <h3 className="cat-subtitle">Choose a category, and start building your board.</h3>
-      <div className="cat-image" />
+        <h1 className="cat-title">Board Components</h1>
+        <h3 className="cat-subtitle">Choose a category, and start building your board.</h3>
+        <div className="cat-image" />
       </div>
       <Container className="body-bs-container">
-        
+
         <div className="body-container">
           <div className="button-container">
             <div className="buttons-left">
@@ -33,10 +35,10 @@ function Start() {
           </div>
         </div>
         <footer className="categories-footer">
-        <div className="copyright">©2021 Complete Decks Inc.</div>
-      </footer>
+          <div className="copyright">©2021 Complete Decks Inc.</div>
+        </footer>
       </Container>
-      
+
     </div>
   )
 }
