@@ -67,7 +67,7 @@ const CartDrawer: React.FC<ICartDrawerProps> = (props) => {
           <Container className="cart-items-container">
             {cartItems.length ?
               <Row>
-                {cartItems.map(_item => <CartDrawerItem key={_item.productId} item={_item} />)}
+                {cartItems.map(_item => <CartDrawerItem key={_item.id} item={_item} />)}
               </Row> :
               <h3>No parts selected yet...</h3>}
           </Container>

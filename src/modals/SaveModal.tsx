@@ -26,7 +26,7 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const [boardName, setBoardName] = useState("");
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
-  const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
+  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
   const { push } = useHistory();
 
   const cartContext = useContext(CartContext);

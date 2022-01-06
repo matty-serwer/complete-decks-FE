@@ -28,7 +28,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
   const [boardDeleted, setBoardDeleted] = useState(false);
 
 
-  const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
+  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
 
   useEffect(() => {
     let idToken = localStorage.getItem('idToken');
@@ -37,7 +37,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
       setUserId(userSub);
     }
 
-    axios.get(`${BACKEND_URL}/boards`,
+    axios.get(`${BACKEND_URL}/board`,
       {
         headers: {
           "Authorization": idToken
