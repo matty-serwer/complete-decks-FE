@@ -35,10 +35,10 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const uiContext = useContext(UIContext);
 
   const handleSaveBoard = () => {
-    let deckId = "";
-    let trucksId = "";
-    let wheelsId = "";
-    let boardId = uuidv4();
+    let deckId = 0;
+    let trucksId = 0;
+    let wheelsId = 0;
+    // let boardId = uuidv4();
     const userId = localStorage.getItem('sub');
     cartItems.forEach((_item) => {
       if (_item.category === "decks") {
@@ -54,12 +54,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
       let idToken = localStorage.getItem('idToken');
       axios
         .post(`${BACKEND_URL}/board`, {
-          "boardId": boardId,
           "name": boardName,
-          "userId": userId,
-          "deckId": deckId,
-          "trucksId": trucksId,
-          "wheelsId": wheelsId
+          "user_id": userId,
+          "deck_id": deckId,
+          "trucks_id": trucksId,
+          "wheels_id": wheelsId
         }, {
           headers: {
             "Authorization": idToken,
