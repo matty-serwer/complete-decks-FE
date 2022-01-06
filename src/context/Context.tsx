@@ -26,7 +26,7 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
     case 'ADD_CART_ITEM':
       let newItem = action.payload;
       // return { ...state, cartItems: [...cartItems, newItem] }
-      const isItemInCart = cartItems.find(_item => _item.productId === newItem.productId)
+      const isItemInCart = cartItems.find(_item => _item.id === newItem.id)
       if (isItemInCart) {
         // console.log(isItemInCart)
         return state
@@ -36,7 +36,7 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
 
     case 'REMOVE_CART_ITEM':
       let oldItem = action.payload;
-      const updatedCartItems = cartItems.filter((_item) => _item.productId !== oldItem.productId)
+      const updatedCartItems = cartItems.filter((_item) => _item.id !== oldItem.id)
 
       return { ...state, cartItems: updatedCartItems };
 

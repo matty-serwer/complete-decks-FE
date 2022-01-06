@@ -53,7 +53,7 @@ const ItemComponent: React.FC<IItemComponentProps> = (props) => {
             <Card.Text className="price">
               ${item.price}
             </Card.Text>
-            {cartItems.some((_item) => _item.productId === item.productId) ? (
+            {cartItems.some((_item) => _item.id === item.id) ? (
               <Button className="remove-button shop-button" variant="outline-warning"
                 onClick={() => setShowRemoveModal(true)}>
                 Remove Part

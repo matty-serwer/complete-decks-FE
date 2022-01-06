@@ -42,11 +42,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
     const userId = localStorage.getItem('sub');
     cartItems.forEach((_item) => {
       if (_item.category === "decks") {
-        deckId = _item.productId.toString();
+        deckId = _item.id;
       } else if (_item.category === "trucks") {
-        trucksId = _item.productId.toString();
+        trucksId = _item.id;
       } else if (_item.category === "wheels") {
-        wheelsId = _item.productId.toString();
+        wheelsId = _item.id;
       }
     })
 
