@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useContext, useState, ChangeEvent } from 'react'
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
+import { BACKEND_URL } from '../context/types';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import * as yup from "yup";
 import saveBoardScheme from '../validation/saveBoardScheme';
 // context
@@ -26,7 +26,6 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const [boardName, setBoardName] = useState("");
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
-  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
   const { push } = useHistory();
 
   const cartContext = useContext(CartContext);
@@ -38,7 +37,6 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
     let deckId = 0;
     let trucksId = 0;
     let wheelsId = 0;
-    // let boardId = uuidv4();
     const userId = localStorage.getItem('sub');
     cartItems.forEach((_item) => {
       if (_item.category === "decks") {
@@ -52,6 +50,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
 
     if (localStorage.getItem('idToken')) {
       let idToken = localStorage.getItem('idToken');
+      // console.log("name: ", boardName);
+      // console.log("user_id: ", userId);
+      // console.log("deck_id: ", deckId);
+      // console.log("trucks_id ", trucksId);
+      // console.log("wheels_id : ", wheelsId);
       axios
         .post(`${BACKEND_URL}/board`, {
           "name": boardName,

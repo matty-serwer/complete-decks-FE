@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, ChangeEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Container, Row, Col, Breadcrumb, Form } from 'react-bootstrap';
 import { useQuery } from '../hooks'
-import { IItem } from '../context/types';
+import { IItem, BACKEND_URL } from '../context/types';
 import CartContext from '../context/Context';
 import UIContext from '../context/UIContext';
 import axios from 'axios';
@@ -19,8 +19,6 @@ import ScrollButton from '../utils/ScrollButton';
 import '../styles/Items.css';
 
 interface IItemsProps { }
-
-const BACKEND_URL = "http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com";
 
 const Items: React.FC<IItemsProps> = (props) => {
   const cartContext = useContext(CartContext);

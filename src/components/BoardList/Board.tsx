@@ -2,12 +2,10 @@ import React, { useState, useEffect, SyntheticEvent, Dispatch, SetStateAction } 
 import { Button, Card, Row, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { IBoard } from './BoardList';
-import { IItem } from '../../context/types';
+import { IItem, BACKEND_URL } from '../../context/types';
 import CartContext from '../../context/Context';
 // components
 import BoardItem from './BoardItem';
-
-const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com';
 
 export interface IBoardProps {
   board: IBoard;
