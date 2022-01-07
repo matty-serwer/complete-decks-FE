@@ -20,7 +20,7 @@ import '../styles/Items.css';
 
 interface IItemsProps { }
 
-const BACKEND_URL = "https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2";
+const BACKEND_URL = "http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com";
 
 const Items: React.FC<IItemsProps> = (props) => {
   const cartContext = useContext(CartContext);
@@ -41,9 +41,10 @@ const Items: React.FC<IItemsProps> = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2/products`)
+      .get(`${BACKEND_URL}/part`)
       .then(response => {
-        setItemsList(response.data.products);
+        setItemsList(response.data);
+        // console.log(response.data);
       })
       .catch(error => {
         console.log(error)
@@ -115,16 +116,12 @@ const Items: React.FC<IItemsProps> = (props) => {
         )}
 
         <Row className="items-list-conainer">
-          {/* {itemsList.length ?
-            (itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />))) : (
-              <Loader />
-            )} */}
           {itemsList.length ?
             [
               (searchTerm.length ?
-                itemsList.filter(item => item.category === category && item.name.toLowerCase().includes(searchTerm.toLowerCase())).map(_item => (<ItemComponent key={_item.productId} item={_item} />)
+                itemsList.filter(item => item.category === category && item.name.toLowerCase().includes(searchTerm.toLowerCase())).map(_item => (<ItemComponent key={_item.id} item={_item} />)
                 ) : (
-                  itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.productId} item={_item} />))
+                  itemsList.filter(item => item.category === category).map(_item => (<ItemComponent key={_item.id} item={_item} />))
                 )
               )
             ] : (

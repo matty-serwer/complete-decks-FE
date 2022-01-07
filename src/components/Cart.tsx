@@ -31,7 +31,7 @@ const Cart: React.FC<ICartProps> = props => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
 
-  const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
+  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
 
   const { push } = useHistory();
 
@@ -108,7 +108,7 @@ const Cart: React.FC<ICartProps> = props => {
             <div className="cart-items-container">
               {cartItems.length ?
                 <Row>
-                  {cartItems.map(_item => <CartItem key={_item.productId} item={_item} />)}
+                  {cartItems.map(_item => <CartItem key={_item.id} item={_item} />)}
                 </Row> :
                 <h3 className="no-parts">No parts selected yet...</h3>}
             </div>

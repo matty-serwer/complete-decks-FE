@@ -7,7 +7,7 @@ import CartContext from '../../context/Context';
 // components
 import BoardItem from './BoardItem';
 
-const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2';
+const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com';
 
 export interface IBoardProps {
   board: IBoard;
@@ -26,13 +26,13 @@ const Board: React.FC<IBoardProps> = (props) => {
 
   const fetchBoardItems = () => {
     axios
-      .get(`${BACKEND_URL}/products`)
+      .get(`${BACKEND_URL}/part`)
       .then(response => {
         // setItemsList(response.data.products)
         let itemsList: IItem[] = response.data.products;
-        let deck = itemsList.find(_item => _item.productId.toString() === board.deckId)
-        let trucks = itemsList.find(_item => _item.productId.toString() === board.trucksId)
-        let wheels = itemsList.find(_item => _item.productId.toString() === board.wheelsId)
+        let deck = itemsList.find(_item => _item.id.toString() === board.deckId)
+        let trucks = itemsList.find(_item => _item.id.toString() === board.trucksId)
+        let wheels = itemsList.find(_item => _item.id.toString() === board.wheelsId)
         console.log(deck);
         if (deck && trucks && wheels) {
           setBoardItems([deck, trucks, wheels]);
@@ -81,7 +81,7 @@ const Board: React.FC<IBoardProps> = (props) => {
         <Card.Body>
           <Row>
             {boardItems.length ? (
-              boardItems.map(_item => <BoardItem key={_item.productId} item={_item} />)
+              boardItems.map(_item => <BoardItem key={_item.id} item={_item} />)
             ) : (
               <p>loading..</p>
             )}

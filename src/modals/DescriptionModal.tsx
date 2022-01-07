@@ -50,7 +50,7 @@ const DescriptionModal: React.FC<IRemoveModalProps> = (props) => {
         </div>
         <div className="dm-button-container">
           <Button className="shop-button" variant="outline-primary" onClick={() => setShowDescModal(false)}>Close</Button>
-          {cartItems.some((_item) => _item.productId === item.productId) ? (
+          {cartItems.some((_item) => _item.id === item.id) ? (
             <Button className="remove-button shop-button" variant="outline-warning"
               onClick={() => {
                 cartContext.cartDispatch({ type: "REMOVE_CART_ITEM", payload: item })

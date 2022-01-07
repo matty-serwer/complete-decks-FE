@@ -26,7 +26,7 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const [boardName, setBoardName] = useState("");
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
-  const BACKEND_URL = 'https://zpi0kzer01.execute-api.us-east-2.amazonaws.com/dev2'
+  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
   const { push } = useHistory();
 
   const cartContext = useContext(CartContext);
@@ -35,18 +35,18 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
   const uiContext = useContext(UIContext);
 
   const handleSaveBoard = () => {
-    let deckId = "";
-    let trucksId = "";
-    let wheelsId = "";
-    let boardId = uuidv4();
+    let deckId = 0;
+    let trucksId = 0;
+    let wheelsId = 0;
+    // let boardId = uuidv4();
     const userId = localStorage.getItem('sub');
     cartItems.forEach((_item) => {
       if (_item.category === "decks") {
-        deckId = _item.productId.toString();
+        deckId = _item.id;
       } else if (_item.category === "trucks") {
-        trucksId = _item.productId.toString();
+        trucksId = _item.id;
       } else if (_item.category === "wheels") {
-        wheelsId = _item.productId.toString();
+        wheelsId = _item.id;
       }
     })
 
@@ -54,12 +54,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
       let idToken = localStorage.getItem('idToken');
       axios
         .post(`${BACKEND_URL}/board`, {
-          "boardId": boardId,
           "name": boardName,
-          "userId": userId,
-          "deckId": deckId,
-          "trucksId": trucksId,
-          "wheelsId": wheelsId
+          "user_id": userId,
+          "deck_id": deckId,
+          "trucks_id": trucksId,
+          "wheels_id": wheelsId
         }, {
           headers: {
             "Authorization": idToken,
