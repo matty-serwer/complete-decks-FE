@@ -43,7 +43,8 @@ const Items: React.FC<IItemsProps> = (props) => {
     axios
       .get(`${BACKEND_URL}/part`)
       .then(response => {
-        setItemsList(response.data.products);
+        setItemsList(response.data);
+        // console.log(response.data);
       })
       .catch(error => {
         console.log(error)
