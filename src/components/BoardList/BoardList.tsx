@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import NavbarComponent from '../Navbar';
-import IItem from '../../context/types';
+import { BACKEND_URL } from '../../context/types';
 // components
 import Board from './Board';
 // styles
@@ -26,9 +26,6 @@ const BoardList: React.FC<IBoardListProps> = () => {
   const [boardList, setBoardList] = useState(new Array<IBoard>());
   const [userId, setUserId] = useState("");
   const [boardDeleted, setBoardDeleted] = useState(false);
-
-
-  const BACKEND_URL = 'http://completedecks-env.eba-cegtxcwe.us-east-2.elasticbeanstalk.com'
 
   useEffect(() => {
     let idToken = localStorage.getItem('idToken');

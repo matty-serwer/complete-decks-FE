@@ -7,3 +7,5 @@ export interface IItem {
   category: string;
   qty?: number;
 };
+
+export const BACKEND_URL = "https://completedecks.ee-cognizantacademy.com";
