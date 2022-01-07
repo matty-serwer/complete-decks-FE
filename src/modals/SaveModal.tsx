@@ -50,6 +50,11 @@ const SaveModal: React.FC<ISaveModalProps> = (props) => {
 
     if (localStorage.getItem('idToken')) {
       let idToken = localStorage.getItem('idToken');
+      // console.log("name: ", boardName);
+      // console.log("user_id: ", userId);
+      // console.log("deck_id: ", deckId);
+      // console.log("trucks_id ", trucksId);
+      // console.log("wheels_id : ", wheelsId);
       axios
         .post(`${BACKEND_URL}/board`, {
           "name": boardName,
