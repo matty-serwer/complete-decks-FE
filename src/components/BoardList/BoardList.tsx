@@ -11,12 +11,12 @@ import axios from 'axios';
 export interface IBoardListProps { }
 
 export interface IBoard {
-  boardId: string;
+  id: number;
   name: string;
-  userId: string;
-  deckId: string;
-  trucksId: string;
-  wheelsId: string;
+  user_id: string;
+  deck_id: number;
+  trucks_id: number;
+  wheels_id: number;
 };
 
 
@@ -41,11 +41,8 @@ const BoardList: React.FC<IBoardListProps> = () => {
         }
       })
       .then((response) => {
-        // console.log(response);
-        const boards = response.data.boards;
+        const boards = response.data;
         setBoardList(boards);
-        // console.log(boardList);
-
       })
       .catch((error) => {
         console.error(error);
@@ -60,7 +57,7 @@ const BoardList: React.FC<IBoardListProps> = () => {
         <div className="boardlist-container">
           {boardList.length ? (
             <div>
-              {boardList.filter(_board => _board.userId === userId).map(filteredBoard => <Board key={filteredBoard.boardId} board={filteredBoard} setBoardDeleted={setBoardDeleted} boardDeleted={boardDeleted} />)}
+              {boardList.filter(_board => _board.user_id === userId).map(filteredBoard => <Board key={filteredBoard.id} board={filteredBoard} setBoardDeleted={setBoardDeleted} boardDeleted={boardDeleted} />)}
             </div>
           ) : (
             <h3 className="empty-boardlist">You&apos;re Board List is empty.</h3>
