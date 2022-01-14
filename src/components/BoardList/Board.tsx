@@ -26,15 +26,13 @@ const Board: React.FC<IBoardProps> = (props) => {
     axios
       .get(`${BACKEND_URL}/part`)
       .then(response => {
-        // setItemsList(response.data.products)
-        let itemsList: IItem[] = response.data.products;
-        let deck = itemsList.find(_item => _item.id.toString() === board.deckId)
-        let trucks = itemsList.find(_item => _item.id.toString() === board.trucksId)
-        let wheels = itemsList.find(_item => _item.id.toString() === board.wheelsId)
+        let itemsList: IItem[] = response.data;
+        let deck = itemsList.find(_item => _item.id === board.deck_id)
+        let trucks = itemsList.find(_item => _item.id === board.trucks_id)
+        let wheels = itemsList.find(_item => _item.id === board.wheels_id)
         console.log(deck);
         if (deck && trucks && wheels) {
           setBoardItems([deck, trucks, wheels]);
-          // console.log('found');
         }
       })
       .catch(error => {
@@ -56,7 +54,7 @@ const Board: React.FC<IBoardProps> = (props) => {
         "Authorization": idToken
       },
       data: {
-        "boardId": board.boardId
+        "boardId": board.id
       }
     })
       .then((response) => {
