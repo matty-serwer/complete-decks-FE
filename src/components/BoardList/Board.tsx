@@ -30,7 +30,6 @@ const Board: React.FC<IBoardProps> = (props) => {
         let deck = itemsList.find(_item => _item.id === board.deck_id)
         let trucks = itemsList.find(_item => _item.id === board.trucks_id)
         let wheels = itemsList.find(_item => _item.id === board.wheels_id)
-        console.log(deck);
         if (deck && trucks && wheels) {
           setBoardItems([deck, trucks, wheels]);
         }
@@ -49,12 +48,9 @@ const Board: React.FC<IBoardProps> = (props) => {
     event.preventDefault();
     let idToken = localStorage.getItem('idToken');
 
-    axios.delete(`${BACKEND_URL}/board`, {
+    axios.delete(`${BACKEND_URL}/board/${board.id}`, {
       headers: {
         "Authorization": idToken
-      },
-      data: {
-        "boardId": board.id
       }
     })
       .then((response) => {
